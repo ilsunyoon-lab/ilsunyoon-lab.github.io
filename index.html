@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="충남대학교 화학과 나노광화학 연구실(윤일선 교수). 빛과 물질이 나노미터 크기에서 만날 때 일어나는 화학을 연구합니다. SERS·AI 분광 센서, 나노포토닉스·메타표면, 광열·전기화학 CO₂ 전환.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="나노광화학 연구실 · 충남대학교 화학과">
+<meta property="og:description" content="빛과 물질이 만나는 곳. 학부연구생·캡스톤 연구생 모집 중.">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>나노광화학 연구실</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: dark-first. Full-bleed hero with a live plasmonic-nanoparticle canvas, floating pill nav, bento research grid, then wide editorial sections in a 1200px column. */
+:root{
+  --bg:#07090D; --bg-2:#0C1016; --surface:#11161E; --surface-2:#161C26;
+  --line:#1F2732; --ink:#EEF2F6; --ink-2:#A0AAB8; --ink-3:#6B7684;
+  --gold:#F2B544; --gold-ink:#1A1204; --glow:rgba(242,181,68,.16);
+  --spectrum:linear-gradient(90deg,#6B4CFF 0%,#2F7BFF 18%,#1FC3E3 36%,#3BD98A 52%,#F4D14B 68%,#FF9A3C 84%,#FF4B4B 100%);
+  --hero-bg:#05070A; --hero-ink:#F3F5F8; --hero-ink-2:#A6B0BE;
+  --sans:"Geist","Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --kr:"Noto Sans KR","Geist",system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#F5F6F8; --bg-2:#EDEFF3; --surface:#FFFFFF; --surface-2:#F7F8FA;
+    --line:#E1E5EB; --ink:#0B0F15; --ink-2:#525E6D; --ink-3:#8A94A2;
+    --gold:#A8730C; --gold-ink:#FFFFFF; --glow:rgba(168,115,12,.12); color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#F5F6F8; --bg-2:#EDEFF3; --surface:#FFFFFF; --surface-2:#F7F8FA;
+  --line:#E1E5EB; --ink:#0B0F15; --ink-2:#525E6D; --ink-3:#8A94A2;
+  --gold:#A8730C; --gold-ink:#FFFFFF; --glow:rgba(168,115,12,.12); color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:lang(ko),.kr{font-family:var(--kr)}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.03em}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:inline-flex;align-items:center;gap:10px}
+.label::before{content:"";width:18px;height:2px;border-radius:2px;background:var(--spectrum)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:calc(env(safe-area-inset-top, 0px) + 14px);left:0;right:0;z-index:50;display:flex;justify-content:center;pointer-events:none;padding-left:max(12px, env(safe-area-inset-left, 0px));padding-right:max(12px, env(safe-area-inset-right, 0px))}
+.nav-in{pointer-events:auto;display:flex;align-items:center;gap:6px;max-width:100%;padding:6px 6px 6px 16px;border-radius:999px;background:rgba(12,16,22,.62);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 10px 30px -12px rgba(0,0,0,.5)}
+.nav .logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;font-size:14px;white-space:nowrap;margin-right:6px}
+.nav .logo i{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFE7A8,#F2B544 55%,#8A5A08);box-shadow:0 0 12px #F2B544}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav ul a{display:block;font-size:13.5px;color:rgba(255,255,255,.72);padding:7px 12px;border-radius:999px;white-space:nowrap;transition:background .2s,color .2s}
+.nav ul a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav .cta{background:#F2B544;color:#1A1204 !important;font-weight:600}
+.nav .cta:hover{background:#FFC960 !important}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--hero-bg);color:var(--hero-ink);overflow:hidden;isolation:isolate}
+#field{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(120% 90% at 0% 100%, rgba(5,7,10,.92) 20%, rgba(5,7,10,.35) 60%, transparent 80%),
+  linear-gradient(180deg, rgba(5,7,10,0) 70%, var(--hero-bg) 100%)}
+.hero .wrap{padding-block:clamp(130px,16vw,190px) 56px}
+.hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-ink-2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hero .kicker b{font-weight:500;color:#F2B544}
+.hero h1{font-size:clamp(46px,9vw,128px);line-height:.92;letter-spacing:-.045em;font-weight:600;margin-top:22px;max-width:11ch}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em;background:linear-gradient(90deg,#FFE3A0,#F2B544 40%,#FF9A3C);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.hero .sub{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;margin-top:36px}
+.hero p{margin:0;max-width:38em;font-family:var(--kr);font-size:clamp(16px,1.6vw,19px);line-height:1.7;color:var(--hero-ink-2)}
+.hero p strong{color:var(--hero-ink);font-weight:500}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-size:14.5px;font-weight:500;font-family:var(--kr);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:#F2B544;color:#1A1204}
+.btn.p:hover{background:#FFC960}
+.btn.g{border:1px solid rgba(255,255,255,.18);color:#fff;background:rgba(255,255,255,.04)}
+.btn.g:hover{background:rgba(255,255,255,.1)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px;border-top:1px solid rgba(255,255,255,.1)}
+.hero-stats div{padding:20px 0 0;display:flex;flex-direction:column;gap:2px}
+.hero-stats b{font-size:clamp(28px,3.6vw,44px);font-weight:500;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.hero-stats span{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--hero-ink-2)}
+.hero-note{font-family:var(--mono);font-size:11px;color:#5E6977;margin-top:18px}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);background:var(--bg-2);overflow:hidden;padding-block:18px}
+.track{display:flex;gap:56px;width:max-content;animation:scroll 48s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ink-2);white-space:nowrap;display:flex;align-items:center;gap:56px}
+.track span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.7}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section.s{padding-block:clamp(80px,11vw,140px) 0}
+.s-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:32px;align-items:end;margin-bottom:48px}
+.s-head h2{font-size:clamp(38px,5.6vw,72px);line-height:1;margin-top:18px}
+.s-head p{margin:0;color:var(--ink-2);font-family:var(--kr);font-size:16px;max-width:34em;justify-self:end}
+
+/* news */
+.news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.news article{position:relative;padding:26px;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0;transition:border-color .25s,transform .25s}
+.news article:hover{border-color:color-mix(in srgb,var(--gold) 50%,var(--line));transform:translateY(-2px)}
+.news .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.news h3{font-family:var(--kr);font-size:17.5px;font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.news .j{margin-top:auto;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink-2)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.card{position:relative;overflow:hidden;border-radius:24px;background:var(--surface);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0;isolation:isolate;transition:border-color .3s}
+.card:hover{border-color:color-mix(in srgb,var(--gold) 45%,var(--line))}
+.card::before{content:"";position:absolute;inset:auto -20% -60% auto;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent);z-index:-1;transition:transform .5s}
+.card:hover::before{transform:scale(1.25)}
+.c4{grid-column:span 4}.c2{grid-column:span 2}.c3{grid-column:span 3}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card .en{min-width:0;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.card h3{font-family:var(--kr);font-size:clamp(22px,2.2vw,28px);font-weight:700;letter-spacing:-.025em;line-height:1.25}
+.card p{margin:0;font-family:var(--kr);color:var(--ink-2);font-size:15px;line-height:1.7}
+.card .viz{margin:4px -4px 0;color:var(--gold)}
+.card .viz svg{display:block;width:100%;height:auto}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.pills span{font-family:var(--kr);font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2)}
+.go{white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--gold);background:none;border:0;padding:0;cursor:pointer}
+.go:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* people */
+.pi{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px}
+.pi-card{border-radius:24px;padding:32px;background:linear-gradient(160deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line);display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden}
+.pi-card .avatar{width:88px;height:88px;font-size:30px}
+.pi-card h3{font-family:var(--kr);font-size:clamp(34px,4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.pi-card h3 small{display:block;font-family:var(--sans);font-size:17px;font-weight:400;color:var(--ink-2);letter-spacing:-.01em;margin-top:8px}
+.roles{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.roles li{font-family:var(--kr);font-size:13.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2)}
+.roles li:first-child{background:var(--gold);color:var(--gold-ink);border-color:transparent;font-weight:500}
+.pi-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px;color:var(--ink-2);margin-top:auto}
+.pi-links a{color:var(--gold)}
+.cv{border-radius:24px;padding:32px;background:var(--surface);border:1px solid var(--line);display:grid;gap:26px}
+.cv h4{margin:0 0 6px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.cv ul{list-style:none;margin:0;padding:0}
+.cv li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--kr);font-size:15px}
+.cv li:last-child{border-bottom:0}
+.cv li .mono{color:var(--ink-3);font-size:13px;padding-top:2px}
+.team{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:16px}
+.member{border-radius:20px;padding:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0}
+.member b{font-weight:600;font-size:16px;letter-spacing:-.01em;display:block}
+.member span{font-family:var(--kr);font-size:13px;color:var(--ink-3)}
+.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff;position:relative;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 45%),var(--av,#2F7BFF)}
+.avatar::after{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:var(--spectrum);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.75}
+.alumni{margin-top:16px;border-radius:20px;border:1px solid var(--line);padding:24px 26px}
+.alumni summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none;font-weight:500}
+.alumni summary::-webkit-details-marker{display:none}
+.alumni summary .mono{font-size:12px;color:var(--ink-3)}
+.alumni ul{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 28px;font-family:var(--kr);font-size:14px}
+.alumni li span{color:var(--ink-3)}
+
+/* publications */
+.hl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:56px}
+.hl a{border-radius:20px;padding:24px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0;transition:border-color .25s,transform .25s}
+.hl a:hover{border-color:color-mix(in srgb,var(--gold) 50%,var(--line));transform:translateY(-2px)}
+.hl .j{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.4vw,30px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.hl .m2{display:flex;flex-wrap:wrap;gap:6px 12px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.hl .m2 b{font-weight:500;color:var(--gold)}
+.hl .h{font-family:var(--kr);font-weight:600;font-size:15.5px;line-height:1.55;color:var(--ink)}
+.hl .s2{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5;color:var(--ink-3)}
+.tools{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 74px);z-index:5;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;border-radius:18px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.chips::-webkit-scrollbar{display:none}
+.chip{font-family:var(--kr);font-size:13px;white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{flex:1 1 220px;min-width:0;font:inherit;font-family:var(--kr);font-size:14px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 4px 4px;font-family:var(--kr);font-size:13px;color:var(--ink-3)}
+.meta label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.bars{display:flex;align-items:flex-end;gap:4px;height:56px;margin:12px 4px 8px}
+.bars div{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.bars i{display:block;width:100%;border-radius:3px 3px 1px 1px;background:linear-gradient(180deg,var(--gold),color-mix(in srgb,var(--gold) 35%,transparent))}
+.bars small{font-family:var(--mono);font-size:9.5px;color:var(--ink-3)}
+.yg{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding-top:28px;margin-top:28px;border-top:1px solid var(--line)}
+.yg > .y{font-size:40px;font-weight:500;letter-spacing:-.04em;line-height:1;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.pubs{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.pub{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:4px 20px;padding:14px 16px;margin:0 -16px;border-radius:14px;transition:background .2s}
+.pub:hover{background:var(--surface)}
+.pub a{font-weight:500;line-height:1.45;font-size:16px}
+.pub a:hover{color:var(--gold)}
+.pub .au{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.pub .au b{color:var(--ink);font-weight:600}
+.pub .ve{font-size:13.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.pub .ve i{font-family:var(--serif);font-size:16px;color:var(--ink-2)}
+.pub .tg{font-family:var(--kr);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+.pub .ct{grid-column:2;grid-row:1 / span 3;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:2px}
+.pub .ct b{display:block;font-family:var(--sans);font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+.empty{font-family:var(--kr);color:var(--ink-3);padding:32px 0}
+
+/* patents */
+.pat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pat div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
+.pat .st{grid-row:1 / span 2;align-self:start;font-family:var(--kr);font-size:11.5px;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pat .st.g{background:var(--gold);color:var(--gold-ink)}
+.pat .st.a{border:1px solid var(--line);color:var(--ink-3)}
+.pat b{font-weight:500;font-size:14.5px;line-height:1.45}
+.pat .mono{font-size:12px;color:var(--ink-3)}
+
+/* collaborators */
+.collab{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.collab div{background:var(--surface);padding:22px 24px;display:grid;gap:4px}
+.collab b{font-family:var(--kr);font-weight:500}
+.collab span{font-family:var(--kr);font-size:13.5px;color:var(--ink-2)}
+
+/* join */
+.join{margin-top:clamp(80px,11vw,140px);position:relative;overflow:hidden;border-radius:32px;background:var(--hero-bg);color:var(--hero-ink);padding:clamp(36px,6vw,72px);isolation:isolate}
+.join::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 90% at 100% 0%,rgba(242,181,68,.28),transparent 60%),radial-gradient(50% 70% at 0% 100%,rgba(47,123,255,.18),transparent 60%)}
+.join::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--spectrum)}
+.join h2{font-size:clamp(40px,6.4vw,84px);line-height:.98;max-width:12ch}
+.join-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;margin-top:40px;align-items:start}
+.join ul{list-style:none;margin:0;padding:0;display:grid;gap:18px;font-family:var(--kr);color:var(--hero-ink-2);font-size:15px}
+.join ul b{display:block;color:var(--hero-ink);font-weight:500;font-size:16px;margin-bottom:2px}
+.mailbox{border-radius:20px;padding:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:grid;gap:14px}
+.mailbox .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--hero-ink-2)}
+.mailbox .m{font-family:var(--mono);font-size:clamp(17px,2vw,22px);word-break:break-all;color:#fff}
+.mailbox button{justify-self:start;font:inherit;font-family:var(--kr);font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:0;background:#F2B544;color:#1A1204;cursor:pointer}
+.mailbox button:hover{background:#FFC960}
+.mailbox p{margin:0;font-family:var(--kr);font-size:14px;line-height:1.7;color:var(--hero-ink-2)}
+
+footer{padding-block:48px 56px;font-size:13px;color:var(--ink-3)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .track{animation:none}
+  .recruit::before{animation:none}
+  *{transition:none !important}
+}
+
+@media (max-width:980px){
+  .team{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c4,.c2,.c3{grid-column:span 6}
+  .bento .c2.half{grid-column:span 3}
+}
+@media (max-width:760px){
+  .hero .sub,.s-head,.pi,.join-grid,.ug,.ug-row,.ug-do{grid-template-columns:minmax(0,1fr)}
+  .s-head p{justify-self:start}
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+  .news,.hl,.pat,.collab{grid-template-columns:minmax(0,1fr)}
+  .team{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bento .c2.half{grid-column:span 6}
+  .yg{grid-template-columns:minmax(0,1fr);gap:8px}
+  .yg > .y{font-size:28px}
+  .nav .logo span{display:none}
+  .nav ul a{padding:7px 9px;font-size:13px}
+  .nav .hide-sm{display:none}
+  .tools{top:calc(env(safe-area-inset-top, 0px) + 68px)}
+  .cv li{grid-template-columns:96px minmax(0,1fr)}
+}
+
+/* light ↔ matter triad */
+.triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:40px}
+.triad > div{padding:28px 24px 28px 0;display:grid;gap:10px;align-content:start;min-width:0}
+.triad > div + div{padding-left:24px;border-left:1px solid var(--line)}
+.triad .m{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.triad .m i{font-style:normal;padding:2px 8px;border-radius:999px}
+.triad .m .L{background:var(--glow);color:var(--gold)}
+.triad .m .M{background:var(--matter-bg);color:var(--matter)}
+.triad b{font-family:var(--kr);font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.035em;line-height:1.25}
+.triad b span{font-size:inherit;font-family:inherit}
+.triad b .L{color:var(--gold)} .triad b .M{color:var(--matter)}
+.triad span{font-family:var(--kr);font-size:14px;color:var(--ink-2)}
+.hero p strong{color:var(--hero-ink);font-weight:500}
+.ug-head p strong{color:var(--ink);font-weight:600}
+:root{--matter:#7FB2FF;--matter-bg:rgba(127,178,255,.14)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--matter:#2F64C8;--matter-bg:rgba(47,100,200,.1)}}
+:root[data-theme="light"]{--matter:#2F64C8;--matter-bg:rgba(47,100,200,.1)}
+@media (max-width:760px){.triad{grid-template-columns:minmax(0,1fr)}.triad > div{padding:22px 0}.triad > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+/* undergraduate recruiting */
+.recruit{display:inline-flex;align-items:center;gap:9px;font-family:var(--kr);font-size:13.5px;font-weight:500;padding:7px 15px 7px 11px;border-radius:999px;background:rgba(242,181,68,.12);border:1px solid rgba(242,181,68,.35);color:#FFD68A;margin-bottom:22px;transition:background .2s}
+.recruit:hover{background:rgba(242,181,68,.2)}
+.recruit::before{content:"";width:8px;height:8px;border-radius:50%;background:#3BD98A;box-shadow:0 0 0 0 rgba(59,217,138,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(59,217,138,0)}100%{box-shadow:0 0 0 0 rgba(59,217,138,0)}}
+.ug{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:start}
+.ug-head h2{font-size:clamp(32px,4.2vw,54px);line-height:1.12;margin-top:18px}
+.ug-head p{color:var(--ink-2);font-family:var(--kr);font-size:16px;line-height:1.75;margin:20px 0 28px;max-width:32em}
+.ug-do{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ug-do > div{border-radius:20px;padding:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.ug-do .tg{align-self:flex-start;font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:6px;background:var(--glow);color:var(--gold)}
+.ug-do b{font-family:var(--kr);font-size:17px;font-weight:700;letter-spacing:-.02em}
+.ug-do p{margin:0;font-family:var(--kr);font-size:14px;color:var(--ink-2);line-height:1.65}
+.ug-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.ug-alumni,.ug-faq{border-radius:20px;padding:26px;background:var(--surface);border:1px solid var(--line);min-width:0}
+.ug-alumni h3,.ug-faq h3{font-family:var(--kr);font-size:20px;font-weight:700;letter-spacing:-.02em}
+.logos{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.logos span{font-family:var(--kr);font-size:14px;font-weight:500;padding:8px 14px;border-radius:12px;background:var(--bg-2);border:1px solid var(--line)}
+.ug-alumni p{margin:0;font-family:var(--kr);font-size:14px;color:var(--ink-2);line-height:1.7}
+.qa{padding:14px 0;border-bottom:1px solid var(--line);font-family:var(--kr)}
+.qa:last-child{border-bottom:0;padding-bottom:0}
+.qa b{font-weight:700;font-size:15px}
+.qa p{margin:4px 0 0;color:var(--ink-2);font-size:14px;line-height:1.7}
+
+/* language toggle + Korean typography */
+.lang{display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);margin-left:4px;flex:none}
+.lang button{font:inherit;font-family:var(--kr);font-size:12.5px;font-weight:500;color:rgba(255,255,255,.65);background:transparent;border:0;border-radius:999px;padding:5px 10px;cursor:pointer;min-width:34px}
+.lang button[aria-pressed="true"]{background:#fff;color:#0B0F15}
+.h-sm{font-size:clamp(30px,3.6vw,44px) !important}
+html[lang="ko"] body{font-family:var(--kr);word-break:keep-all;overflow-wrap:anywhere}
+html[lang="ko"] h1,html[lang="ko"] h2{font-family:var(--kr);font-weight:700;letter-spacing:-.04em}
+html[lang="ko"] .hero h1{font-size:clamp(42px,8vw,108px);line-height:1.08;max-width:none}
+html[lang="ko"] .hero h1 em,html[lang="ko"] em.s{font-family:var(--kr);font-style:normal;font-weight:700;letter-spacing:-.04em}
+html[lang="ko"] em.s{color:var(--gold)}
+html[lang="ko"] .s-head h2{font-size:clamp(36px,5vw,64px);line-height:1.1}
+html[lang="ko"] .join h2{font-size:clamp(34px,5.2vw,68px);line-height:1.12;max-width:14ch}
+html[lang="ko"] .pub a,html[lang="ko"] .hl .t,html[lang="ko"] .pub .au,html[lang="ko"] .pat b,html[lang="ko"] .member b{font-family:var(--sans)}
+html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .hero-note,html[lang="ko"] .news .tag,html[lang="ko"] .cv h4,html[lang="ko"] .pi-card .label{font-family:var(--kr);letter-spacing:.02em}
+@media (max-width:760px){.lang button{padding:5px 8px;min-width:30px}}
+</style>
+</head>
+<body>
+
+
+<nav class="nav" aria-label="주요 메뉴">
+  <div class="nav-in">
+    <a class="logo" href="#top"><i></i><span data-i18n="logo"></span></a>
+    <ul>
+      <li><a href="#research" data-i18n="navResearch"></a></li>
+      <li><a href="#people" data-i18n="navPeople"></a></li>
+      <li><a href="#publications" data-i18n="navPubs"></a></li>
+      <li class="hide-sm"><a href="#news" data-i18n="navNews"></a></li>
+      <li><a class="cta" href="#join" data-i18n="navJoin"></a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="언어 선택 / Language">
+      <button type="button" id="lang-ko" data-lang="ko">한</button>
+      <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <a class="recruit" href="#undergrad" data-i18n="recruit"></a>
+    <div class="kicker"><b>●</b> <span data-i18n="kicker"></span></div>
+    <h1 data-i18n="h1"></h1>
+    <div class="sub">
+      <p data-i18n="lead"></p>
+      <div class="btns">
+        <a class="btn p" href="#research" data-i18n="btnResearch"></a>
+        <a class="btn g" href="#join" data-i18n="btnJoin"></a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><b>2,395</b><span data-i18n="stCites"></span></div>
+      <div><b>23</b><span>h-index</span></div>
+      <div><b id="nPapers">52</b><span data-i18n="stPapers"></span></div>
+      <div><b>11</b><span data-i18n="stPatents"></span></div>
+    </div>
+    <div class="hero-note" data-i18n="heroNote"></div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track"></div>
+</div>
+
+<main>
+<section class="s" id="research">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">Research</span><h2 data-i18n="hResearch"></h2></div>
+      <p data-i18n="pResearch"></p>
+    </div>
+    <div class="triad" id="triad"></div>
+    <div class="bento" id="bento"></div>
+  </div>
+</section>
+
+<section class="s" id="people">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">People</span><h2 data-i18n="hPeople"></h2></div>
+      <p data-i18n="pPeople"></p>
+    </div>
+    <div class="pi">
+      <div class="pi-card">
+        <div class="avatar" style="--av:#B07A10">IY</div>
+        <div>
+          <div class="label" style="margin-bottom:12px" data-i18n="piLabel"></div>
+          <h3 data-i18n="piName"></h3>
+        </div>
+        <ul class="roles" id="roles"></ul>
+        <div class="pi-links">
+          <span>ilsunyoon@cnu.ac.kr</span>
+          <span>+82-42-821-6546</span>
+          <a href="https://scholar.google.com/citations?user=pJvsLNoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+        </div>
+      </div>
+      <div class="cv">
+        <div><h4 data-i18n="cvCareer"></h4><ul id="career"></ul></div>
+        <div><h4 data-i18n="cvEdu"></h4><ul id="edu"></ul></div>
+      </div>
+    </div>
+    <div class="team" id="team"></div>
+    <details class="alumni">
+      <summary><span data-i18n="alumni"></span><span class="mono" id="alumniN"></span></summary>
+      <ul id="alumni"></ul>
+    </details>
+  </div>
+</section>
+
+<section class="s" id="publications">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">Publications</span><h2 data-i18n="hPubs"></h2></div>
+      <p data-i18n="pPubs"></p>
+    </div>
+    <div class="hl" id="hl"></div>
+    <div class="tools">
+      <div class="chips" id="chips" role="group" aria-label="분야 필터"></div>
+      <input class="search" id="q" type="search">
+    </div>
+    <div class="meta">
+      <span id="pubCount"></span>
+      <label for="conf"><input type="checkbox" id="conf"> <span data-i18n="conf"></span></label>
+    </div>
+    <div class="bars" id="bars" aria-hidden="true"></div>
+    <div id="publist"></div>
+
+    <div class="s-head" style="margin-top:96px;margin-bottom:28px">
+      <div><span class="label">Patents</span><h2 class="h-sm" data-i18n="hPat"></h2></div>
+      <p data-i18n="pPat"></p>
+    </div>
+    <div class="pat" id="pat"></div>
+  </div>
+</section>
+
+<section class="s" id="news">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">News</span><h2 data-i18n="hNews"></h2></div>
+    </div>
+    <div class="news" id="newsList"></div>
+  </div>
+</section>
+
+<section class="s" id="undergrad">
+  <div class="wrap">
+    <div class="ug">
+      <div class="ug-head">
+        <span class="label">Undergraduate Research</span>
+        <h2 data-i18n="hUg"></h2>
+        <p data-i18n="pUg"></p>
+        <div class="btns"><a class="btn p" href="#join" data-i18n="ugCta"></a></div>
+      </div>
+      <div class="ug-do" id="ugDo"></div>
+    </div>
+    <div class="ug-row">
+      <div class="ug-alumni"><h3 data-i18n="ugAlumniH"></h3><div class="logos" id="ugLogos"></div><p data-i18n="ugAlumniP"></p></div>
+      <div class="ug-faq"><h3 data-i18n="ugFaqH"></h3><div id="ugFaq"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="join">
+      <span class="label" style="color:#A6B0BE">Join us</span>
+      <h2 style="margin-top:18px" data-i18n="hJoin"></h2>
+      <div class="join-grid">
+        <ul id="joinList"></ul>
+        <div class="mailbox">
+          <span class="k" data-i18n="mailK"></span>
+          <span class="m" id="mail">ilsunyoon@cnu.ac.kr</span>
+          <button type="button" id="copyMail" data-i18n="copy"></button>
+          <p data-i18n="addr"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot"></span>
+    <span data-i18n="updated"></span>
+  </div>
+</footer>
+
+<script>
+// [year, title, authors, venue, details, cites, topic, type(j/c)]
+const PUBS = [
+ [2026,"Photothermal CO2 and H2O Reduction via Pulsed Near‐IR Activation of Transition Metals","H Nam, SK Nguyen, SY Hwang, H Lee, G Yun, Y Gwon, S Bae, H Shim, et al.","Advanced Functional Materials","e78294",0,"co2","j"],
+ [2026,"Integration and Implementation of Machine Learning & Artificial Intelligence in Surface‐Enhanced Raman Spectroscopy","N Singh, BT Trinh, SK Nguyen, KV Nguyen, C Kim, B Kim, Y Sohn, I Yoon","Advanced Sensor Research","5 (7), e70183",0,"sers","j"],
+ [2026,"Laser-engineered Ag/Ag oxide interfaces for tunable CO2 reduction: Mechanistic insights from experiment and theory","SY Kim, CH Lee, I Yoon, CK Rhee, HJ Chun, Y Sohn","Materials Today Energy","102298",0,"co2","j"],
+ [2026,"Nonequilibrium Photothermal Reactions Under Pulsed Laser Excitation: Mechanisms, Dynamics, and Applications","H Shim, SK Nguyen, H Lee, J Shin, I Yoon, Y Sohn","ChemCatChem","18 (7), e01870",2,"co2","j"],
+ [2026,"Quasi-Bound States in the Continuum in PDMS-Supported Silicon Metasurfaces","SK Nguyen, BT Trinh, D Kim, N Singh, YK Hwang, VD Lam, I Yoon","Photonics","13 (3), 226",0,"photo","j"],
+ [2025,"Photon–ligand–surface coupling drives C–C bond chain growth in electrochemical CO2 and CO reduction","H Shim, G Yun, Y Gwon, S Bae, CK Rhee, I Yoon, Y Sohn","Materials Today Energy","102116",0,"co2","j"],
+ [2025,"Cellulose-Based SERS Substrate for Vapor-Phase Thiol Detection with PCA for Enhanced Chemical Selectivity","BT Trinh, SK Nguyen, D Kim, HQ Nguyen, J Lee, Y Sohn, I Yoon","Chemosensors","13 (3), 101",4,"sers","j"],
+ [2025,"Rapid and sensitive melamine detection via paper-based surface-enhanced Raman scattering substrate: Plasma-assisted in situ growth of closely packed gold nanoparticles","BT Trinh, R Akter, H Cho, O Omelianovych, K Jo, H Kim, T Kang, et al.","Applied Surface Science Advances","26, 100717",5,"sers","j"],
+ [2024,"Stable and efficient perovskite solar cells by controlling the crystal growth via introduction of plasmonic TiN nanoparticles","O Omelianovych, S Sandhu, MA Ewusi, L Larina, B Kim, BT Trinh, et al.","Advanced Functional Materials","34 (44), 2407343",14,"solar","j"],
+ [2024,"Electrochemical Fischer-Tropsch chemistry across transition metals: a paradigm shift in sustainable liquid fuel production","SY Hwang, JY Maeng, I Yoon, CW Myung, CK Rhee, Y Sohn","Nano Energy","128, 109881",30,"co2","j"],
+ [2024,"Black titania coated glass fiber as a photo absorber in interfacial solar steam generation under harsh condition","SS Hussain, O Omelianovych, LL Larina, E Park, VT Nguyen, BT Trinh, et al.","Solar Energy Materials and Solar Cells","271, 112829",11,"solar","j"],
+ [2024,"Control of vertical gap and statistical distribution in hole-sphere gold nanogaps for sensitive and quantitative SERS","S Adhikari, M Kim, J Lee, C Hong, Y Jeong, J Baek, JH Lee, S Lee, J Kim, et al.","ACS Applied Nano Materials","7 (12), 14050–14056",16,"sers","j"],
+ [2023,"Unlocking long-chain hydrocarbons (C2–7) via direct electrochemical CO2 and CO reduction on balanced Au/Ni electrodes","YJ Kim, JY Maeng, SY Hwang, JH Yang, I Yoon, CW Myung, CK Rhee, et al.","Nano Energy","118, 108995",37,"co2","j"],
+ [2023,"Unlocking the potential of gallium for electrochemical CO2 reduction and the role of overlayer nickel for C–C coupling pathways","YJ Kim, G Yun, JY Maeng, HJ Jang, I Yoon, CW Myung, CK Rhee, Y Sohn","Journal of Industrial and Engineering Chemistry","126, 317–326",8,"co2","j"],
+ [2023,"Two-dimensional Pd-Cellulose with optimized morphology for the effective solar to steam generation","O Omelianovych, E Park, SS Hussain, E Chuluunbat, BT Trinh, I Yoon, et al.","Desalination","560, 116679",9,"solar","j"],
+ [2023,"Electrochemical CO2/CO Reduction and C–C Coupling Path for Mimicking Fischer–Tropsch Synthesis over Cadmium Electrodes","JY Maeng, SY Hwang, YJ Kim, I Yoon, CW Myung, CK Rhee, Y Sohn","The Journal of Physical Chemistry C","127 (24), 11448–11461",18,"co2","j"],
+ [2023,"Zirconia nanocomposites and their applications as transparent advanced optical materials with high refractive index","D Lee, H Cho, I Yoon","Bulletin of the Korean Chemical Society","44 (4), 284–292",16,"optic","j"],
+ [2023,"Dual-functional solar-to-steam generation and SERS detection substrate based on plasmonic nanostructure","BT Trinh, H Cho, D Lee, O Omelianovych, T Kim, SK Nguyen, HS Choi, et al.","Nanomaterials","13 (6), 1003",11,"solar","j"],
+ [2022,"All-inorganic robust absorber for high-sun solar steam generation and solvent recovery","TTT Nguyen, O Omelianovych, MG Choi, A Mnoyan, BT Trinh, I Yoon, et al.","Solar Energy Materials and Solar Cells","247, 111946",7,"solar","j"],
+ [2022,"Electrocatalytic CO2 reduction reaction over group 15 bismuth and antimony film electrodes: What makes difference?","HJ Jang, JY Maeng, YJ Kim, I Yoon, CW Myung, CK Rhee, Y Sohn","Journal of CO2 Utilization","64, 102202",20,"co2","j"],
+ [2022,"Etching for vertical sidewall formation in TiO2 nanorods","M Park, I Yoon, Y Park","Applied Science and Convergence Technology","31 (5), 113–115",3,"photo","j"],
+ [2022,"Sustainable desalination device capable of producing freshwater and electricity","VH Trinh, NA Nguyen, O Omelianovych, VD Dao, I Yoon, HS Choi, et al.","Desalination","535, 115820",78,"solar","j"],
+ [2022,"Surface Modification of ZrO2 Nanoparticles with TEOS to Prepare Transparent ZrO2@SiO2-PDMS Nanocomposite Films with Adjustable Refractive Indices","H Cho, D Lee, S Hong, H Kim, K Jo, C Kim, I Yoon","Nanomaterials","12 (14), 2328",22,"optic","j"],
+ [2022,"A new approach to quantitative SERS with high enhancement","S Adhikari, M Kim, JM Lee, Y Jang, I Yoon, D Lee","Plasmonics in Biology and Medicine XIX (Proc. SPIE)","PC1197809",0,"sers","c"],
+ [2021,"Plasma-assisted ITO sol coating for optimizing the optoelectronic properties of ITO glass","G Lee, E Park, VT Nguyen, S Heo, NA Nguyen, LL Larina, I Yoon, et al.","Applied Surface Science","551, 149414",16,"solar","j"],
+ [2021,"Au@ZIF-8 SERS paper for food spoilage detection","H Kim, BT Trinh, KH Kim, J Moon, H Kang, K Jo, R Akter, J Jeong, EK Lim, et al.","Biosensors and Bioelectronics","179, 113063",211,"sers","j"],
+ [2020,"Effective photon management of non-surface-textured flexible thin crystalline silicon solar cells","I Hwang, Y Jeong, Y Shiratori, J Park, S Miyajima, I Yoon, K Seo","Cell Reports Physical Science","1 (11)",52,"photo","j"],
+ [2020,"Newly developed broadband antireflective nanostructures by coating a low-index MgF2 film onto a SiO2 moth-eye nanopattern","GY Yoo, N Nurrosyid, SJ Lee, Y Jeong, I Yoon, C Kim, W Kim, SY Jang, et al.","ACS Applied Materials & Interfaces","12 (9), 10626–10636",77,"photo","j"],
+ [2019,"Enhanced surface properties of light-trapping Si nanowires using synergetic effects of metal-assisted and anisotropic chemical etchings","Y Jeong, C Hong, YH Jung, R Akter, H Yoon, I Yoon","Scientific Reports","9 (1), 15914",28,"photo","j"],
+ [2017,"Polyhedral gold nanocrystals/polyelectrolyte composite film: One-pot synthesis via interfacial liquid plasma polymerization","QC Tran, H Ha, S Lee, KH Bae, O Kim, YS Cho, I Yoon, HY Kim, HS Choi","Composites Science and Technology","153, 198–208",4,"sers","j"],
+ [2017,"Enhancement of light absorption in photovoltaic devices using textured polydimethylsiloxane stickers","I Hwang, D Choi, S Lee, JH Seo, KH Kim, I Yoon, K Seo","ACS Applied Materials & Interfaces","9 (25), 21276–21282",74,"photo","j"],
+ [2017,"Nanofibre optic force transducers with sub-piconewton resolution via near-field plasmon–dielectric interactions","Q Huang, J Lee, FT Arce, I Yoon, P Angsantikul, J Liu, Y Shi, J Villanueva, et al.","Nature Photonics","11 (6), 352–355",45,"photo","j"],
+ [2017,"Plasmonic nanoantenna of hole-sphere nanogaps for surface enhanced Raman scattering sensor","JM Lee, C Hong, S Adhikari, H Jeong, YD Jang, JS Baek, I Yoon, D Lee","Conference on Lasers and Electro-Optics (CLEO)","1–2",0,"sers","c"],
+ [2017,"Development of an Arsenobetaine Standard Solution with Metrological Traceability to the SI by an Arsenic‐specific Mass Balance Method","KM Ko, IJ Kim, C Go, YH Yim, Y Lim, TK Kim, I Yoon, E Hwang, KS Lee","Bulletin of the Korean Chemical Society","38 (2), 237–245",1,"nano","j"],
+ [2016,"Gap controlled plasmon-dielectric coupling effects investigated with single nanoparticle-terminated atomic force microscope probes","Q Huang, F Teran Arce, J Lee, I Yoon, J Villanueva, R Lal, DJ Sirbuly","Nanoscale","8 (39), 17102–17107",7,"photo","j"],
+ [2014,"Quantitative mechanical analysis of thin compressible polymer monolayers on oxide surfaces","Q Huang, I Yoon, J Villanueva, K Kim, DJ Sirbuly","Soft Matter","10 (40), 8001–8010",25,"photo","j"],
+ [2013,"Nanofiber Near-Field Light-Matter Interactions for Enhanced Detection of Molecular Level Displacements and Dynamics","I Yoon, SE Baker, K Kim, NO Fischer, D Heineck, Y Wang, SC Esener, et al.","Nano Letters","",14,"photo","j"],
+ [2012,"Profiling the evanescent field of nanofiber waveguides using self-assembled polymer coatings","I Yoon, SE Baker, K Kim, Y Wang, SC Esener, DJ Sirbuly","Nanoscale","5 (2), 552–555",13,"photo","j"],
+ [2012,"Rainbow radiating single-crystal Ag nanowire nanoantenna","T Kang, W Choi, I Yoon, H Lee, MK Seo, QH Park, B Kim","Nano Letters","12 (5), 2331–2336",48,"photo","j"],
+ [2012,"Stimulus-responsive light coupling and modulation with nanofiber waveguide junctions","I Yoon, K Kim, SE Baker, D Heineck, SC Esener, DJ Sirbuly","Nano Letters","12 (4), 1905–1911",13,"photo","j"],
+ [2012,"Single crystalline NbO2 nanowire synthesis by chemical vapor transport method","SH Lee, HN Yoon, IS Yoon, BS Kim","Bulletin of the Korean Chemical Society","33 (3), 839–842",28,"nano","j"],
+ [2011,"Au Nanowire‐on‐Film SERRS Sensor for Ultrasensitive Hg2+ Detection","T Kang, SM Yoo, I Yoon, S Lee, J Choo, SY Lee, B Kim","Chemistry – A European Journal","17 (7), 2211–2214",87,"sers","j"],
+ [2011,"Self‐assembly of semiconducting photoluminescent peptide nanowires in the vapor phase","JS Lee, I Yoon, J Kim, H Ihee, B Kim, CB Park","Angewandte Chemie International Edition","50 (5), 1164",140,"nano","j"],
+ [2011,"Polymorph‐Tuned Synthesis of α‐ and β‐Bi2O3 Nanowires and Determination of Their Growth Direction from Polarized Raman Single Nanowire Microscopy","J In, I Yoon, K Seo, J Park, J Choo, Y Lee, B Kim","Chemistry – A European Journal","17 (4), 1304–1309",101,"nano","j"],
+ [2010,"Pattern-selective epitaxial growth of twin-free Pd nanowires from supported nanocrystal seeds","Y Yoo, I Yoon, H Lee, J Ahn, JP Ahn, B Kim","ACS Nano","4 (5), 2919–2927",31,"nano","j"],
+ [2010,"Patterned multiplex pathogen DNA detection by Au particle-on-wire SERS sensor","T Kang, SM Yoo, I Yoon, SY Lee, B Kim","Nano Letters","10 (4), 1189–1193",449,"sers","j"],
+ [2010,"Au nanowire–Au nanoparticles conjugated system which provides micrometer size molecular sensors","T Kang, I Yoon, J Kim, H Ihee, B Kim","Chemistry – A European Journal","16 (4), 1351–1355",37,"sers","j"],
+ [2009,"Calculation of electric field enhancement in the gap between two paralleled metallic wires","W Choi, I Yoon, B Kim, QH Park","Conference on Lasers and Electro-Optics/Pacific Rim","TUP9_12",0,"sers","c"],
+ [2009,"Creating well-defined hot spots for surface-enhanced Raman scattering by single-crystalline noble metal nanowire pairs","T Kang, I Yoon, KS Jeon, W Choi, Y Lee, K Seo, Y Yoo, QH Park, H Ihee, et al.","The Journal of Physical Chemistry C","113 (18), 7492–7496",63,"sers","j"],
+ [2009,"Single nanowire on a film as an efficient SERS-active platform","I Yoon, T Kang, W Choi, J Kim, Y Yoo, SW Joo, QH Park, H Ihee, B Kim","Journal of the American Chemical Society","131 (2), 758–762",263,"sers","j"],
+ [2009,"Characterization of Graphene Sheets Formed by the Reaction of Carbon Monoxide with Aluminum Sulfide","I Yoon, CD Kim, BK Min, YK Kim, B Kim, WS Jung","Bulletin of the Korean Chemical Society","30 (12), 3045",26,"nano","j"],
+ [2007,"Simple vapor-phase synthesis of single-crystalline Ag nanowires and single-nanowire surface-enhanced Raman scattering","P Mohanty, I Yoon, T Kang, K Seo, KSK Varadwaj, W Choi, QH Park, et al.","Journal of the American Chemical Society","129 (31), 9576–9577",147,"sers","j"],
+ [2007,"Conformational study of tyramine and its water clusters by laser spectroscopy","I Yoon, K Seo, S Lee, Y Lee, B Kim","The Journal of Physical Chemistry A","111 (10), 1800–1807",34,"nano","j"]
+];
+const PATENTS = [
+ [2019,"Method of transferring reverse pattern by using imprint process","US 10,185,218","g"],
+ [2018,"Master wafer, method of manufacturing the same, and method of manufacturing optical device by using the same","US 10,007,124","g"],
+ [2016,"Ultra-sensitive force sensing based on evanescent light","US 9,459,163","g"],
+ [2019,"Surface-enhanced Raman scattering substrate, element for detecting molecule including the same, and method for manufacturing the same","US App. 16/301,922","a"],
+ [2016,"Case in which electrical parts are accommodated and electronic device having the same","US App. 14/918,663","a"],
+ [2016,"Pattern structure and method of manufacturing the pattern structure, and liquid crystal display device","US App. 14/817,496","a"],
+ [2016,"Pattern structure and method of manufacturing the pattern structure","US App. 14/733,234","a"],
+ [2016,"Method of forming aligned pattern in pattern formation region by using imprint process","US App. 14/724,898","a"],
+ [2013,"Optical nanoantenna using single-crystalline silver nanowire, method of manufacturing the same and optical nanoantenna using single-crystalline metal nanowire","US App. 13/625,384","a"],
+ [2011,"Detection method of bio-chemical material using surface-enhanced Raman scattering","US App. 12/900,248","a"],
+ [2010,"Spectral sensor for surface-enhanced Raman scattering","US App. 12/654,665","a"]
+];
+const TOPICS = {
+  sers:  {ko:"SERS · AI 분광 센서", en:"SERS & AI spectroscopy", sko:"SERS", sen:"SERS", cat:"Sensing"},
+  photo: {ko:"나노포토닉스 · 메타표면", en:"Nanophotonics & metasurfaces", sko:"나노포토닉스", sen:"Photonics", cat:"Photonics"},
+  co2:   {ko:"광열·전기화학 CO₂ 전환", en:"Photothermal & electrochemical CO₂ conversion", sko:"CO₂ 전환", sen:"CO₂", cat:"Catalysis"},
+  solar: {ko:"태양광-증기 · 에너지 소재", en:"Solar-to-steam & energy materials", sko:"에너지 소재", sen:"Energy", cat:"Energy"},
+  optic: {ko:"광학 나노복합소재", en:"Optical nanocomposites", sko:"광학 소재", sen:"Optics", cat:"Materials"},
+  nano:  {ko:"나노소재 합성 · 분광", en:"Synthesis & spectroscopy", sko:"나노합성", sen:"Synthesis", cat:"Synthesis"}
+};
+const THEMES = [
+ {k:"sers", cls:"c4", viz:"spec",
+  ko:"금속 나노구조의 핫스팟에서 라만 신호를 10⁶배 이상 키워 분자 지문을 읽습니다. 대기압 플라즈마로 종이 위에 금 나노입자를 직접 키우는 리간드-프리 공정, 전기화학 SERS, 머신러닝 스펙트럼 해석으로 식품·환경 유해물질을 현장에서 검출합니다.",
+  en:"We amplify Raman signals more than a millionfold at the hot spots of metal nanostructures to read molecular fingerprints. Gold nanoparticles grown directly on paper by atmospheric-pressure plasma, electrochemical SERS and machine-learning spectral analysis let us detect food and environmental contaminants on site.",
+  kko:["단일 나노와이어 SERS","플라즈마 환원 AuNP","종이·셀로판 기판","EC-SERS","ML/AI 해석"], ken:["Single-nanowire SERS","Plasma-reduced AuNPs","Paper & cellophane substrates","EC-SERS","ML/AI analysis"]},
+ {k:"photo", cls:"c2", viz:"lattice",
+  ko:"실리콘 메타표면의 quasi-BIC 공명, 나노파이버 근접장, 광포획 나노구조로 빛을 가두고 조절합니다.",
+  en:"We trap and steer light with quasi-BIC resonances in silicon metasurfaces, nanofiber near fields and light-trapping nanostructures.",
+  kko:["Quasi-BIC","근접장 광학","광포획"], ken:["Quasi-BIC","Near-field optics","Light trapping"]},
+ {k:"co2", cls:"c2 half", viz:"pulse",
+  ko:"펄스 근적외선 레이저로 전이금속을 국소 가열해 CO₂·H₂O를 환원하고, 전기화학 C–C 결합 성장 경로를 추적합니다.",
+  en:"Pulsed near-IR lasers locally heat transition metals to reduce CO₂ and H₂O, and we trace how C–C bonds grow during electrochemical reduction.",
+  kko:["광열촉매","C₂₊ 탄화수소"], ken:["Photothermal catalysis","C₂₊ hydrocarbons"]},
+ {k:"solar", cls:"c2 half", viz:"sun",
+  ko:"플라즈모닉 광흡수체로 햇빛을 증기로 바꾸는 계면 태양열 증발과 담수화·발전 장치를 만듭니다.",
+  en:"Plasmonic absorbers turn sunlight into steam for interfacial evaporation and devices that produce both fresh water and electricity.",
+  kko:["태양열 증발","담수화"], ken:["Solar evaporation","Desalination"]},
+ {k:"optic", cls:"c2", viz:"layers",
+  ko:"ZrO₂ 나노입자 표면 개질로 굴절률을 조절하는 투명 고굴절 나노복합 필름을 개발합니다.",
+  en:"Surface-modified ZrO₂ nanoparticles give transparent nanocomposite films with a tunable, high refractive index.",
+  kko:["고굴절 ZrO₂","투명 필름"], ken:["High-index ZrO₂","Transparent films"]}
+];
+const MEMBERS = [
+ {name:"Trinh Ba Thong", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#2F7BFF"},
+ {name:"Netrapal Singh", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#13A6A0"},
+ {name:"Sy Khiem Nguyen", ko:"박사과정", en:"Ph.D. Student", c:"#7A5CFF"},
+ {name:"Khanh Viet Nguyen", ko:"박사과정", en:"Ph.D. Student", c:"#E0703A"},
+ {name:"김건효", ko:"학부연구생", en:"Undergraduate Researcher", c:"#C24B6B", ini:"건효"}
+];
+const ALUMNI = [
+ ["조광현","학부·석사","B.S./M.S.","성균관대학교 박사과정","Ph.D. program, Sungkyunkwan Univ."],
+ ["이든찬","학부·석사","B.S./M.S.","성균관대학교 박사과정","Ph.D. program, Sungkyunkwan Univ."],
+ ["조한준","학부·석사","B.S./M.S.","성균관대학교 박사과정","Ph.D. program, Sungkyunkwan Univ."],
+ ["홍수연","학부·석사","B.S./M.S.","",""],
+ ["김다연","학부·석사","B.S./M.S.","",""],
+ ["김재훤","학부","B.S.","포항공과대학교 대학원","Graduate school, POSTECH"],
+ ["정영권","학부","B.S.","광주과학기술원 대학원","Graduate school, GIST"],
+ ["박하철","학부","B.S.","LG에너지솔루션","LG Energy Solution"],
+ ["장준혁","학부","B.S.","",""],
+ ["김수현","학부","B.S.","포항공과대학교 화학과","POSTECH, Chemistry"],["장의진","학부","B.S.","광주과학기술원 재료공학과","GIST, Materials Science"],["고청아","석사","M.S.","국방과학연구소","Agency for Defense Development"],
+ ["이상원","학부","B.S.","광동제약","Kwang Dong Pharmaceutical"],["배준호","학부","B.S.","서울대학교 화학과","Seoul National Univ., Chemistry"],["홍찬우","석사","M.S.","기업 취업","Industry"],
+ ["정영훈","학부","B.S.","LG화학","LG Chem"],["정영순","학부·석사","B.S./M.S.","SK하이닉스","SK hynix"],["이수민","학부·석사","B.S./M.S.","한국화학연구원","KRICT"],
+ ["이규찬","학부","B.S.","기업 취업","Industry"],["전반석","학부","B.S.","서울대학교 화학과","Seoul National Univ., Chemistry"],["김보민","학부","B.S.","UNIST 에너지공학과","UNIST, Energy Engineering"]
+];
+const NEWS = [
+ {tag:{ko:"2026 · 논문",en:"2026 · Paper"}, ko:"펄스 근적외선으로 전이금속을 활성화한 광열 CO₂·H₂O 환원 연구가 게재되었습니다.", en:"Our work on photothermal CO₂ and H₂O reduction by pulsed near-IR activation of transition metals is published.", j:"Advanced Functional Materials"},
+ {tag:{ko:"2026 · 리뷰",en:"2026 · Review"}, ko:"SERS에 머신러닝·인공지능을 통합하는 방법을 정리한 리뷰가 게재되었습니다.", en:"Our review on integrating machine learning and AI into SERS is published.", j:"Advanced Sensor Research"},
+ {tag:{ko:"2026 · 논문",en:"2026 · Paper"}, ko:"PDMS 위 실리콘 메타표면에서 quasi-BIC 공명을 구현한 연구가 게재되었습니다.", en:"Quasi-bound states in the continuum in PDMS-supported silicon metasurfaces, published.", j:"Photonics"}
+];
+const CV = {
+ career:[
+  ["2014 – 현재","2014 – now","충남대학교 화학과 교수 (2014 조교수 임용, 현 정교수)","Professor, Dept. of Chemistry, CNU (Assistant Prof. from 2014; now Full Professor)"],
+  ["2013 – 2014","2013 – 2014","삼성종합기술원(SAIT) 전문연구원","Research Staff Member, Samsung Advanced Institute of Technology"],
+  ["2010 – 2013","2010 – 2013","UC San Diego 나노공학과 박사후연구원","Postdoc, UC San Diego, Nanoengineering"],
+  ["2008 – 2009","2008 – 2009","KAIST 박사후연구원","Postdoc, KAIST"]],
+ edu:[
+  ["2008","2008","KAIST 물리화학 박사","Ph.D., Physical Chemistry, KAIST"],
+  ["2002","2002","KAIST 물리화학 석사","M.S., Physical Chemistry, KAIST"],
+  ["2000","2000","KAIST 화학 학사","B.S., Chemistry, KAIST"]],
+ roles:{ko:["충남대학교 화학과 교수","화학과 학과장","뉴그린에너지환경화학연구소(PRIDE) 소장","반도체공동연구소 위원"],
+        en:["Professor of Chemistry, CNU","Chair, Department of Chemistry","Director, PRIDE Research Institute","Member, CNU Semiconductor Joint Research Center"]}
+};
+const JOIN = {
+ ko:[["대학원생 · 석사 / 박사 / 석박통합","화학, 물리, 재료, 화학공학 전공자. 나노소재 합성이나 분광 측정 경험이 있으면 좋습니다."],
+     ["박사후연구원","SERS, 나노포토닉스, 광열·전기화학 촉매 분야 경력자를 찾습니다."],
+     ["학부연구생","정규 수업과 함께 실제 연구 주제를 맡습니다. 졸업생은 포스텍·서울대·성균관대·GIST·UNIST 대학원과 SK하이닉스·LG에너지솔루션·LG화학·한국화학연구원 등으로 진출했습니다."]],
+ en:[["Graduate students · M.S. / Ph.D. / integrated","Backgrounds in chemistry, physics, materials science or chemical engineering. Experience in nanomaterial synthesis or spectroscopy is a plus."],
+     ["Postdoctoral researchers","Experience in SERS, nanophotonics, or photothermal and electrochemical catalysis."],
+     ["Undergraduate researchers","Take on a real research project alongside coursework. Alumni have gone on to POSTECH, SNU, Sungkyunkwan, GIST and UNIST, and to SK hynix, LG Energy Solution, LG Chem and KRICT."]]
+};
+const I18N = {
+ ko:{
+  recruit:"학부연구생 · 캡스톤 연구생 모집 중 →",
+  hUg:"레이저, 플라즈마, AI.<br><em class=\"s\">진짜 장비</em>로 연구합니다.",
+  pUg:"교과서 그림으로만 보던 장비를 직접 다룹니다. 레이저로 분자를 잡아내고, 플라즈마로 나노입자를 만들고, AI로 데이터를 분석합니다. <strong>반도체·디스플레이·에너지 기업과 대학원이 찾는 실전 역량</strong>을 학부 때 먼저 쌓으세요. 정규 수업이나 캡스톤디자인과 병행할 수 있습니다.",
+  ugCta:"학부연구생 · 캡스톤 연구생 지원하기 →", ugAlumniH:"선배들은 지금", ugFaqH:"자주 묻는 질문",
+  ugAlumniP:"이 실험실에서 연구를 시작한 선배들은 반도체·배터리·화학 기업, 국책연구소, 국내 최상위 대학원으로 진출했습니다. 학부연구생으로 시작해 석사를 마치고 성균관대 박사과정에 진학한 선배만 세 명입니다.",
+  logo:"나노광화학 연구실", navResearch:"연구", navPeople:"구성원", navPubs:"논문", navNews:"소식", navJoin:"지원하기",
+  kicker:"충남대학교 화학과 · 나노광화학 연구실",
+  h1:"빛과 물질이<br><em>만나는 곳.</em>",
+  lead:"<strong>나노광화학 연구실</strong>은 빛과 물질이 나노미터 크기에서 만날 때 일어나는 화학을 연구합니다. <strong>빛으로 물질을 읽고</strong>, <strong>물질로 빛을 다루고</strong>, <strong>빛으로 물질을 바꿉니다.</strong>",
+  btnResearch:"연구 분야 보기 →", btnJoin:"함께 연구하기",
+  stCites:"피인용", stPapers:"저널 논문", stPatents:"미국 특허",
+  heroNote:"Google Scholar 기준 · 2026.10 · 배경: 레이저가 금 나노입자 사이 핫스팟을 들뜨게 하는 모습 (커서를 움직여 보세요)",
+  hResearch:"<em class=\"s\">연구</em> 분야", pResearch:"단일 나노와이어 SERS에서 출발해 센서, 광소자, 에너지 전환으로 영역을 넓혀 왔습니다. 카드의 논문 수를 누르면 해당 분야 논문만 모아 볼 수 있습니다.",
+  hPeople:"함께하는 <em class=\"s\">사람들</em>", pPeople:"화학, 물리, 재료를 전공한 국내외 연구자들이 함께합니다.",
+  piLabel:"연구책임자", piName:"윤일선<small>Ilsun Yoon, Ph.D.</small>", cvCareer:"경력", cvEdu:"학력", alumni:"졸업생과 진로",
+  hPubs:"<em class=\"s\">논문</em>", pPubs:"연구실을 대표하는 논문 여섯 편과 전체 논문 목록입니다. 카드나 제목을 누르면 Google Scholar에서 원문을 찾습니다.",
+  conf:"학회 발표 포함", search:"제목·저자·저널 검색", all:"전체", cited:"회 인용", confTag:"학회",
+  count:(n,c)=>`${n}편 · 피인용 ${c}회`, empty:"조건에 맞는 논문이 없습니다. 검색어를 줄이거나 ‘전체’를 눌러 보세요.", papers:n=>`논문 ${n}편 →`,
+  hPat:"미국 <em class=\"s\">특허</em>", pPat:"등록 3건, 출원 8건. 나노와이어 SERS 센서와 나노임프린트 패턴 공정이 중심입니다.", granted:"등록", pending:"출원",
+  hNews:"<em class=\"s\">소식</em>",
+  hJoin:"함께 <em class=\"s\">빛</em>을 다룰 사람을 찾습니다.", mailK:"CV와 관심 연구 주제를 보내 주세요", copy:"이메일 주소 복사", copied:"복사했습니다 ✓", selected:"주소를 선택했습니다",
+  addr:"34134 대전광역시 유성구 대학로 99<br>충남대학교 자연과학대학 화학과 · 나노광화학 연구실 315호<br>Tel +82-42-821-6546",
+  foot:"© 2026 충남대학교 화학과 나노광화학 연구실", updated:"업데이트 2026.10", alumniN:n=>`${n}명`
+ },
+ en:{
+  recruit:"Now recruiting undergraduate & capstone researchers →",
+  hUg:"Lasers, plasma, AI.<br>Research on <em class=\"s\">real equipment.</em>",
+  pUg:"Run the instruments you have only seen in textbooks. Catch molecules with lasers, grow nanoparticles with plasma and analyze data with AI. <strong>Build the hands-on skills that semiconductor, display and energy companies and graduate schools look for</strong> while you are still an undergraduate. You can do this alongside regular classes or your capstone design course.",
+  ugCta:"Apply as an undergraduate or capstone researcher →", ugAlumniH:"Where our undergraduates went", ugFaqH:"FAQ",
+  ugAlumniP:"Undergraduates who started research here have gone on to semiconductor, battery and chemical companies, national labs and top graduate schools. Three of them stayed for an M.S. and then entered the Ph.D. program at Sungkyunkwan University.",
+  logo:"Nanophotochem Lab", navResearch:"Research", navPeople:"People", navPubs:"Publications", navNews:"News", navJoin:"Join us",
+  kicker:"Laboratory of Nanophotochemistry · Chungnam National University",
+  h1:"Where light <em>meets matter.</em>",
+  lead:"We study the chemistry that happens when light and matter meet at the nanoscale. We <strong>read matter with light</strong>, <strong>shape light with matter</strong>, and <strong>transform matter with light</strong>.",
+  btnResearch:"Explore research →", btnJoin:"Join the lab",
+  stCites:"Citations", stPapers:"Journal papers", stPatents:"US patents",
+  heroNote:"Google Scholar · Oct 2026 · Background: a laser exciting hot spots between gold nanoparticles (move your cursor)",
+  hResearch:"What we <em class=\"s\">study</em>", pResearch:"From single-nanowire SERS we have grown into sensing, photonics and energy conversion. Click a card’s paper count to see that area’s publications.",
+  hPeople:"The <em class=\"s\">team</em>", pPeople:"Researchers from Korea and abroad with backgrounds in chemistry, physics and materials science.",
+  piLabel:"Principal Investigator", piName:"Ilsun Yoon<small>윤일선 · Ph.D.</small>", cvCareer:"Career", cvEdu:"Education", alumni:"Alumni & where they went",
+  hPubs:"Selected <em class=\"s\">work</em>", pPubs:"Six papers that define the lab, followed by the full list. Cards and titles link to Google Scholar.",
+  conf:"Include conference papers", search:"Search title, author, journal", all:"All", cited:"citations", confTag:"Conf.",
+  count:(n,c)=>`${n} papers · ${c} citations`, empty:"No papers match. Try a shorter search or select ‘All’.", papers:n=>`${n} papers →`,
+  hPat:"US <em class=\"s\">patents</em>", pPat:"3 granted and 8 pending, centered on nanowire SERS sensors and nanoimprint patterning.", granted:"Granted", pending:"Pending",
+  hNews:"Latest",
+  hJoin:"Come <em class=\"s\">shine</em> a light with us.", mailK:"Send your CV and research interests", copy:"Copy email", copied:"Copied ✓", selected:"Address selected",
+  addr:"Dept. of Chemistry, Chungnam National University<br>99 Daehak-ro, Yuseong-gu, Daejeon 34134, Korea · Room 315<br>Tel +82-42-821-6546",
+  foot:"© 2026 Laboratory of Nanophotochemistry, Chungnam National University", updated:"Updated Oct 2026", alumniN:n=>`${n} alumni`
+ }
+};
+
+/* ===================== helpers ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chem = s => esc(s).replace(/CO2/g,"CO₂").replace(/H2O/g,"H₂O").replace(/ZrO2/g,"ZrO₂").replace(/TiO2/g,"TiO₂").replace(/SiO2/g,"SiO₂").replace(/MgF2/g,"MgF₂").replace(/NbO2/g,"NbO₂").replace(/Bi2O3/g,"Bi₂O₃").replace(/Hg2\+/g,"Hg²⁺");
+const boldMe = s => esc(s).replace(/\b(I Yoon|IS Yoon)\b/g,"<b>$1</b>");
+const scholar = t => "https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + t + '"');
+const journals = PUBS.filter(p => p[7] === "j");
+$("#nPapers").textContent = journals.length;
+let L = "ko";
+try { const s = localStorage.getItem("npl-lang"); if (s === "en" || s === "ko") L = s; } catch(e){}
+if (location.hash === "#en") L = "en";
+const t = k => I18N[L][k];
+
+/* ===================== hero canvas: plasmonic field ===================== */
+(function(){
+  const cv = $("#field"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0, H=0, dpr=1, P=[], mouse={x:-999,y:-999,a:0}, tick=0, running=true;
+  function size(){
+    const r = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio||1);
+    W = r.width; H = r.height; cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n = Math.round(Math.min(90, Math.max(34, W*H/16000)));
+    P = Array.from({length:n}, () => ({x:Math.random()*W, y:Math.random()*H, r:2+Math.random()*4.5, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25}));
+  }
+  function frame(){
+    tick += 1;
+    ctx.clearRect(0,0,W,H);
+    const bx = (Math.sin(tick/420)*.5+.5)*W*1.2 - W*.1;
+    const g = ctx.createLinearGradient(bx-160,0,bx+160,0);
+    g.addColorStop(0,"rgba(255,75,75,0)"); g.addColorStop(.5,"rgba(255,110,80,.07)"); g.addColorStop(1,"rgba(255,75,75,0)");
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+    const ex = p => { let e = Math.max(0, 1-Math.abs(p.x-bx)/180); const md = Math.hypot(p.x-mouse.x, p.y-mouse.y); return Math.max(e, mouse.a*Math.max(0,1-md/200)); };
+    ctx.globalCompositeOperation = "lighter";
+    for (let i=0;i<P.length;i++){
+      const a = P[i];
+      for (let j=i+1;j<P.length;j++){
+        const b = P[j], dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy), gap=d-a.r-b.r;
+        if (gap < 46){
+          const e = (ex(a)+ex(b))/2, k = Math.pow(1-gap/46, 2);
+          ctx.strokeStyle = `rgba(242,181,68,${.05+.22*k*(.3+e)})`; ctx.lineWidth = .8;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+          const mx=a.x+dx*(a.r+gap/2)/d, my=a.y+dy*(a.r+gap/2)/d, R = 6+26*k*(.25+e);
+          const hg = ctx.createRadialGradient(mx,my,0,mx,my,R);
+          hg.addColorStop(0,`rgba(255,240,200,${.55*k*(.2+e)})`); hg.addColorStop(.4,`rgba(242,181,68,${.25*k*(.2+e)})`); hg.addColorStop(1,"rgba(242,181,68,0)");
+          ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(mx,my,R,0,7); ctx.fill();
+        }
+      }
+    }
+    ctx.globalCompositeOperation = "source-over";
+    for (const p of P){
+      const e = ex(p);
+      const pg = ctx.createRadialGradient(p.x-p.r*.35,p.y-p.r*.35,0,p.x,p.y,p.r);
+      pg.addColorStop(0,"#FFF1C9"); pg.addColorStop(.45,"#E9A93A"); pg.addColorStop(1,"#6A4306");
+      if (e>0.05){ const halo = ctx.createRadialGradient(p.x,p.y,p.r,p.x,p.y,p.r*5); halo.addColorStop(0,`rgba(242,181,68,${.3*e})`); halo.addColorStop(1,"rgba(242,181,68,0)"); ctx.fillStyle=halo; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*5,0,7); ctx.fill(); }
+      ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill();
+      if (!reduce){ p.x += p.vx + (Math.random()-.5)*.12; p.y += p.vy + (Math.random()-.5)*.12;
+        if (p.x<-10) p.x=W+10; if (p.x>W+10) p.x=-10; if (p.y<-10) p.y=H+10; if (p.y>H+10) p.y=-10; }
+    }
+    mouse.a *= .985;
+    if (!reduce && running) requestAnimationFrame(frame);
+  }
+  size(); frame();
+  addEventListener("resize", () => { size(); if (reduce) frame(); });
+  $(".hero").addEventListener("pointermove", e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top; mouse.a = 1; });
+  if (!reduce && "IntersectionObserver" in window){
+    new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !running){ running = true; requestAnimationFrame(frame); } running = v; }).observe(cv);
+  }
+  window.__heroResize = () => { size(); if (reduce) frame(); };
+})();
+
+/* ===================== marquee ===================== */
+(function(){
+  const names = ["Nature Photonics","Journal of the American Chemical Society","Nano Letters","Advanced Functional Materials","ACS Nano","Angewandte Chemie","Nano Energy","Biosensors and Bioelectronics","ACS Applied Materials & Interfaces","Cell Reports Physical Science","Desalination"];
+  const row = names.map(n => `<span>${esc(n)}</span>`).join("");
+  $("#track").innerHTML = row + row;
+})();
+
+/* ===================== bento visuals ===================== */
+const VIZ = {
+  spec(){
+    const W=640,H=150,pk=[[523,.1,12],[720,.08,14],[1078,1,11],[1140,.16,12],[1185,.12,10],[1290,.07,14],[1485,.06,12],[1587,.82,12]];
+    const f=v=>{let y=.04;for(const[c,a,w]of pk)y+=a*w*w/((v-c)**2+w*w);return y};
+    const sx=v=>(v-400)/1400*W, sy=y=>H-22-y/1.1*(H-36);
+    let d="";for(let v=400;v<=1800;v+=3)d+=(v===400?"M":"L")+sx(v).toFixed(1)+" "+sy(f(v)).toFixed(1);
+    return `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".35"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+      <path d="${d} L${W} ${H-22} L0 ${H-22}Z" fill="url(#sg)"/><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <line x1="0" x2="${W}" y1="${H-22}" y2="${H-22}" stroke="var(--line)"/>
+      ${[600,1000,1400,1800].map(v=>`<text x="${Math.min(sx(v),W-2)}" y="${H-6}" text-anchor="${v===1800?"end":"middle"}" font-family="var(--mono)" font-size="10" fill="var(--ink-3)">${v}</text>`).join("")}
+      <text x="${sx(1078)+8}" y="${sy(f(1078))+4}" font-family="var(--mono)" font-size="11" fill="var(--ink)">1078 cm⁻¹</text>
+      <text x="${sx(1587)+8}" y="${sy(f(1587))+4}" font-family="var(--mono)" font-size="11" fill="var(--ink)">1587</text></svg>`;
+  },
+  lattice(){ let s=""; for(let r=0;r<5;r++)for(let c=0;c<9;c++){const x=18+c*34,y=14+r*22,o=.25+.75*Math.exp(-((c-4)**2+(r-2)**2)/6);s+=`<rect x="${x-6}" y="${y-6}" width="12" height="12" rx="2" fill="currentColor" opacity="${o.toFixed(2)}"/>`;} return `<svg viewBox="0 0 310 112" aria-hidden="true">${s}</svg>`; },
+  pulse(){ let d="M0 56"; for(let x=0;x<=310;x+=2){const e=Math.exp(-(((x-155)/42)**2));d+=` L${x} ${(56-44*e*Math.cos(x/4.2)).toFixed(1)}`;} return `<svg viewBox="0 0 310 112" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="0" x2="310" y1="56" y2="56" stroke="var(--line)"/></svg>`; },
+  sun(){ let s=`<circle cx="60" cy="56" r="22" fill="currentColor" opacity=".9"/>`; for(let i=0;i<4;i++){s+=`<path d="M120 ${36+i*14} q 20 -10 40 0 t 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="currentColor" stroke-width="1.4" opacity="${(.9-i*.2).toFixed(1)}"/>`;} return `<svg viewBox="0 0 310 112" aria-hidden="true">${s}</svg>`; },
+  layers(){ let s=""; [1.42,1.55,1.68,1.80,1.93].forEach((n,i)=>{s+=`<rect x="0" y="${8+i*20}" width="${160+i*30}" height="14" rx="3" fill="currentColor" opacity="${(.2+i*.18).toFixed(2)}"/><text x="${170+i*30}" y="${19+i*20}" font-family="var(--mono)" font-size="10" fill="var(--ink-3)">n = ${n.toFixed(2)}</text>`;}); return `<svg viewBox="0 0 310 112" aria-hidden="true">${s}</svg>`; }
+};
+const VIZCACHE = {}; THEMES.forEach(th => VIZCACHE[th.viz] = VIZ[th.viz]());
+
+/* ===================== renderers ===================== */
+function renderStatic(){
+  document.documentElement.lang = L;
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = t(el.dataset.i18n); if (typeof v === "string") el.innerHTML = v; });
+  $("#q").placeholder = t("search"); $("#q").setAttribute("aria-label", t("search"));
+  ["ko","en"].forEach(k => $("#lang-"+k).setAttribute("aria-pressed", String(L===k)));
+  document.title = L==="ko" ? "나노광화학 연구실" : "Nanophotochemistry Lab";
+}
+function renderBento(){
+  $("#bento").innerHTML = THEMES.map(th => {
+    const n = journals.filter(p => p[6]===th.k).length;
+    return `<article class="card ${th.cls}">
+      <div class="top"><span class="en">${L==="ko" ? TOPICS[th.k].en : TOPICS[th.k].cat}</span><button class="go" type="button" data-topic="${th.k}">${t("papers")(n)}</button></div>
+      <h3>${TOPICS[th.k][L]}</h3>
+      <p>${th[L]}</p>
+      <div class="viz">${VIZCACHE[th.viz]}</div>
+      <div class="pills">${th["k"+L].map(k=>`<span>${k}</span>`).join("")}</div>
+    </article>`;
+  }).join("");
+}
+function renderPeople(){
+  $("#roles").innerHTML = CV.roles[L].map(r => `<li>${r}</li>`).join("");
+  const li = r => `<li><span class="mono">${L==="ko"?r[0]:r[1]}</span><span>${L==="ko"?r[2]:r[3]}</span></li>`;
+  $("#career").innerHTML = CV.career.map(li).join("");
+  $("#edu").innerHTML = CV.edu.map(li).join("");
+  const initials = m => m.ini || m.name.split(" ").filter(Boolean).map(w=>w[0]).slice(0,2).join("");
+  $("#team").innerHTML = MEMBERS.map(m => `<div class="member"><div class="avatar" style="--av:${m.c}">${esc(initials(m))}</div><div><b>${esc(m.name)}</b><span>${m[L]}</span></div></div>`).join("");
+  $("#alumni").innerHTML = ALUMNI.map(a => { const d = L==="ko"?a[3]:a[4]; return `<li>${a[0]} <span>${L==="ko"?a[1]:a[2]}${d?" → "+d:""}</span></li>`; }).join("");
+  $("#alumniN").textContent = t("alumniN")(ALUMNI.length);
+  $("#joinList").innerHTML = JOIN[L].map(j => `<li><b>${j[0]}</b>${j[1]}</li>`).join("");
+}
+function renderOther(){
+  $("#hl").innerHTML = FEATURED.map(f => {
+    const p = journals.find(x => x[1].startsWith(f.k));
+    const main = L==="ko" ? f.ko : chem(p[1]);
+    const sub  = L==="ko" ? chem(p[1]) : f.en;
+    return `<a href="${scholar(p[1])}" target="_blank" rel="noopener">
+      <div class="j">${esc(p[3])}</div>
+      <div class="m2"><span>${p[0]}</span><b>${L==="ko" ? "인용 "+p[5]+"회" : p[5]+" citations"}</b><span>${L==="ko"?TOPICS[p[6]].sko:TOPICS[p[6]].sen}</span></div>
+      <div class="h">${main}</div>
+      <div class="s2">${sub}</div>
+    </a>`;
+  }).join("");
+  $("#pat").innerHTML = PATENTS.map(p => `<div><span class="st ${p[3]}">${p[3]==="g"?t("granted"):t("pending")}</span><b>${esc(p[1])}</b><span class="mono">${p[2]} · ${p[0]}</span></div>`).join("");
+  $("#newsList").innerHTML = NEWS.map(n => `<article><span class="tag">${n.tag[L]}</span><h3>${n[L]}</h3><span class="j">${esc(n.j)}</span></article>`).join("");
+}
+
+/* ===================== publications ===================== */
+const state = {topic:"all", q:"", conf:false};
+try { const s = localStorage.getItem("npl-topic"); if (s && (s==="all" || TOPICS[s])) state.topic = s; } catch(e){}
+function setTopic(k){ state.topic = k; try{ localStorage.setItem("npl-topic", k); }catch(e){} renderChips(); renderPubs(); }
+function renderChips(){
+  $("#chips").innerHTML = [["all",t("all")], ...Object.keys(TOPICS).map(k=>[k, L==="ko"?TOPICS[k].sko:TOPICS[k].sen])].map(([k,l]) => `<button type="button" class="chip" id="chip-${k}" data-k="${k}" aria-pressed="${state.topic===k}">${l}</button>`).join("");
+}
+function renderPubs(){
+  const q = state.q.trim().toLowerCase();
+  const list = PUBS.filter(p => (state.conf || p[7]==="j") && (state.topic==="all" || p[6]===state.topic) && (!q || (p[1]+" "+p[2]+" "+p[3]).toLowerCase().includes(q)));
+  const cites = list.reduce((s,p)=>s+p[5],0);
+  $("#pubCount").textContent = t("count")(list.length, cites.toLocaleString());
+  const years = []; for(let y=2007; y<=2026; y++) years.push(y);
+  const counts = years.map(y => list.filter(p=>p[0]===y).length), max = Math.max(1,...counts);
+  $("#bars").innerHTML = years.map((y,i) => `<div title="${y}: ${counts[i]}"><i style="height:${counts[i]?Math.max(4,counts[i]/max*40):0}px"></i><small>${String(y).slice(2)}</small></div>`).join("");
+  if (!list.length){ $("#publist").innerHTML = `<p class="empty">${t("empty")}</p>`; return; }
+  const by = {}; list.forEach(p => (by[p[0]] ||= []).push(p));
+  $("#publist").innerHTML = Object.keys(by).sort((a,b)=>b-a).map(y => `
+    <div class="yg"><div class="y">${y}</div><ol class="pubs">${by[y].map(p => `
+      <li class="pub">
+        <a href="${scholar(p[1])}" target="_blank" rel="noopener">${chem(p[1])}</a>
+        <div class="au">${boldMe(p[2])}</div>
+        <div class="ve"><i>${esc(p[3])}</i>${p[4]?`<span>${esc(p[4])}</span>`:""}<span class="tg">${L==="ko"?TOPICS[p[6]].sko:TOPICS[p[6]].sen}</span>${p[7]==="c"?`<span class="tg">${t("confTag")}</span>`:""}</div>
+        <div class="ct">${p[5]?`<b>${p[5]}</b>cited`:""}</div>
+      </li>`).join("")}</ol></div>`).join("");
+}
+
+const UG = {
+ do:{ko:[["LASER","레이저로 분자를 잡아냅니다","라만 분광기와 펄스 레이저를 직접 운용해 눈에 보이지 않는 극미량 물질을 검출합니다."],
+         ["PLASMA","플라즈마로 나노입자를 만듭니다","대기압 플라즈마 장비로 금 나노입자를 키우고 전자현미경으로 구조를 확인합니다."],
+         ["AI","AI로 데이터를 분석합니다","Python과 머신러닝으로 스펙트럼을 분류합니다. 코딩 실력이 곧 연구 성과가 됩니다."],
+         ["SIM","빛을 시뮬레이션합니다","FDTD로 나노구조 주변의 전기장을 계산해 새 구조를 설계합니다. 반도체·광소자 설계에 쓰이는 기술입니다."]],
+     en:[["LASER","Catch molecules with lasers","Operate Raman spectrometers and pulsed lasers to detect trace amounts of substances you cannot see."],
+         ["PLASMA","Make nanoparticles with plasma","Grow gold nanoparticles with atmospheric-pressure plasma and check their structure under an electron microscope."],
+         ["AI","Analyze data with AI","Classify spectra with Python and machine learning. Your coding skills turn directly into research results."],
+         ["SIM","Simulate light","Compute electric fields around nanostructures with FDTD to design new ones, a technique used in semiconductor and photonic device design."]]},
+ logos:{ko:["포스텍","서울대","성균관대","GIST","UNIST","SK하이닉스","LG에너지솔루션","LG화학","한국화학연구원","국방과학연구소"],
+        en:["POSTECH","Seoul National Univ.","Sungkyunkwan Univ.","GIST","UNIST","SK hynix","LG Energy Solution","LG Chem","KRICT","Agency for Defense Development"]},
+ faq:{ko:[["캡스톤디자인으로 참여할 수 있나요?","네. 캡스톤디자인 과목과 연계해 한 학기 동안 연구실 프로젝트를 맡을 수 있습니다."],
+          ["수업과 병행할 수 있나요?","네. 학부연구생은 정규 수업과 병행하며, 수업 일정에 맞춰 실험 시간을 정합니다."],
+          ["실험 경험이 없어도 되나요?","괜찮습니다. 실험실 안전교육과 장비 사용법부터 박사후연구원·대학원생 선배와 함께 배웁니다."],
+          ["외국인 연구원과 함께 일하나요?","네. 여러 나라에서 온 연구원들과 함께 일하며 연구에 필요한 영어 소통을 자연스럽게 익힙니다."],
+          ["어떻게 지원하나요?","이메일로 간단한 자기소개를 보내거나 자연과학대학 315호 연구실로 찾아오세요."]],
+      en:[["Can I join through the capstone design course?","Yes. You can take on a lab project for a semester as part of your capstone design course."],
+          ["Can I do this alongside classes?","Yes. Undergraduate researchers schedule lab time around their classes."],
+          ["Do I need lab experience?","No. You start with lab safety and instrument training and learn alongside postdocs and graduate students."],
+          ["Will I work with international researchers?","Yes. You work with researchers from several countries and pick up English for research communication along the way."],
+          ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, College of Natural Sciences."]]}
+};
+function renderUG(){
+  $("#ugDo").innerHTML = UG.do[L].map(d => `<div><span class="tg">${d[0]}</span><b>${d[1]}</b><p>${d[2]}</p></div>`).join("");
+  $("#ugLogos").innerHTML = UG.logos[L].map(x => `<span>${x}</span>`).join("");
+  $("#ugFaq").innerHTML = UG.faq[L].map(f => `<div class="qa"><b>${f[0]}</b><p>${f[1]}</p></div>`).join("");
+}
+const FEATURED = [
+ {k:"Nanofibre optic force transducers", ko:"플라즈몬–유전체 근접장 상호작용으로 서브피코뉴턴(10⁻¹² N 이하)의 힘을 읽어내는 나노파이버 광학 힘 센서", en:"Nanofiber optic force transducers that resolve sub-piconewton forces through near-field plasmon–dielectric coupling."},
+ {k:"Effective photon management of non-surface-textured", ko:"표면 텍스처 없이 빛을 가두는 광관리 기술로 유연한 박막 결정질 실리콘 태양전지의 효율을 높였습니다", en:"Photon management that raises the efficiency of flexible thin crystalline-silicon solar cells without surface texturing."},
+ {k:"Sustainable desalination device", ko:"햇빛으로 수증기를 만들어 깨끗한 물을 얻는 동시에 전기까지 생산하는 지속가능한 담수화 장치", en:"A solar steam device that produces fresh water and generates electricity at the same time."},
+ {k:"Patterned multiplex pathogen DNA detection", ko:"금 입자–나노와이어 SERS 센서 하나로 여러 병원균의 DNA를 동시에 구별해 검출했습니다", en:"A single Au particle-on-wire SERS sensor that identifies DNA from several pathogens at once."},
+ {k:"Single nanowire on a film", ko:"금속 필름 위 단일 나노와이어로 재현성 높은 SERS 핫스팟을 만든 연구실의 출발점이 된 논문", en:"A single nanowire on a metal film as a reproducible SERS hot spot, the starting point of the lab’s SERS work."},
+ {k:"Au@ZIF-8 SERS paper", ko:"Au@ZIF-8 SERS 종이로 식품이 상할 때 나오는 기체를 현장에서 검출했습니다", en:"Au@ZIF-8 SERS paper that detects the gases released as food spoils."}
+];
+const TRIAD = {
+ ko:[["L","M","빛 → 물질","<span class=L>빛</span>으로 <span class=M>물질</span>을 읽습니다","SERS · AI 분광 센서"],
+     ["M","L","물질 → 빛","<span class=M>물질</span>로 <span class=L>빛</span>을 다룹니다","나노포토닉스 · 메타표면 · 광학 나노복합소재"],
+     ["L","M","빛 → 물질","<span class=L>빛</span>으로 <span class=M>물질</span>을 바꿉니다","광열·전기화학 CO₂ 전환 · 태양광-증기"]],
+ en:[["L","M","Light → Matter","Read <span class=M>matter</span> with <span class=L>light</span>","SERS & AI spectroscopy"],
+     ["M","L","Matter → Light","Shape <span class=L>light</span> with <span class=M>matter</span>","Nanophotonics, metasurfaces, optical nanocomposites"],
+     ["L","M","Light → Matter","Transform <span class=M>matter</span> with <span class=L>light</span>","Photothermal & electrochemical CO₂ conversion, solar-to-steam"]]
+};
+function renderTriad(){
+  $("#triad").innerHTML = TRIAD[L].map(x => { const [a,b] = x[2].split(" → "); return `<div><span class="m"><i class="${x[0]}">${a}</i>→<i class="${x[1]}">${b}</i></span><b>${x[3]}</b><span>${x[4]}</span></div>`; }).join("");
+}
+function renderAll(){ renderStatic(); renderTriad(); renderBento(); renderPeople(); renderUG(); renderOther(); renderChips(); renderPubs(); }
+function setLang(k){ if (k===L) return; L = k; try{ localStorage.setItem("npl-lang", k); }catch(e){} renderAll(); window.__heroResize && window.__heroResize(); }
+
+$(".lang").addEventListener("click", e => { const b = e.target.closest("button[data-lang]"); if (b) setLang(b.dataset.lang); });
+$("#bento").addEventListener("click", e => { const b = e.target.closest(".go"); if(!b) return; setTopic(b.dataset.topic); $("#publications").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"}); });
+$("#chips").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) setTopic(b.dataset.k); });
+$("#q").addEventListener("input", e => { state.q = e.target.value; renderPubs(); });
+$("#conf").addEventListener("change", e => { state.conf = e.target.checked; renderPubs(); });
+$("#copyMail").addEventListener("click", () => {
+  const btn = $("#copyMail"), txt = $("#mail").textContent;
+  const done = () => { btn.textContent = t("copied"); setTimeout(()=>btn.textContent=t("copy"),1800); };
+  const fb = () => { const r = document.createRange(); r.selectNodeContents($("#mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = t("selected"); };
+  try { navigator.clipboard.writeText(txt).then(done, fb); } catch(e){ fb(); }
+});
+renderAll();
+</script>
+
+</body>
+</html>
