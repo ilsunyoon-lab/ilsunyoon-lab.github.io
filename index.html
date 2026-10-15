@@ -261,6 +261,40 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   .cv li{grid-template-columns:96px minmax(0,1fr)}
 }
 
+
+[hidden]{display:none!important}
+/* projects */
+.proj-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.proj-list{border:1px solid var(--line);border-radius:20px;background:var(--surface);overflow:hidden}
+.proj{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:6px 20px;align-items:start;padding:18px 22px;border-bottom:1px solid var(--line)}
+.proj:last-child{border-bottom:0}
+.proj .pp{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:3px}
+.proj .pm{display:grid;gap:4px;min-width:0}
+.proj .pm b{font-family:var(--kr);font-weight:600;font-size:15.5px;line-height:1.5}
+.proj .pm span{font-family:var(--kr);font-size:13.5px;color:var(--ink-2)}
+.st2{font-family:var(--kr);font-size:12px;padding:3px 10px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);color:var(--ink-3)}
+.st2.ongoing{background:rgba(59,217,138,.14);border-color:transparent;color:#1F9E62}
+.empty-card{border:1.5px dashed var(--line);border-radius:20px;padding:44px 28px;text-align:center;font-family:var(--kr);display:grid;gap:6px;justify-items:center}
+.empty-card b{font-size:17px;font-weight:600}
+.empty-card p{margin:0;color:var(--ink-2);font-size:14.5px}
+/* gallery */
+.gal{columns:3 260px;column-gap:14px}
+.gal figure{break-inside:avoid;margin:0 0 14px;border-radius:16px;overflow:hidden;position:relative;background:var(--surface);border:1px solid var(--line)}
+.gal button{all:unset;display:block;cursor:zoom-in;width:100%}
+.gal button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.gal img{display:block;width:100%;height:auto;transition:transform .5s}
+.gal figure:hover img{transform:scale(1.03)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(180deg,transparent,rgba(5,7,10,.78));color:#fff;font-family:var(--kr);font-size:13.5px;line-height:1.4;pointer-events:none}
+.gal figcaption small{display:block;font-family:var(--mono);font-size:11px;opacity:.75;margin-bottom:2px}
+.gal-more{display:flex;justify-content:center;margin-top:8px}
+.gal-more button{font:inherit;font-family:var(--kr);font-size:14px;padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(5,7,10,.94);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.lb figure{margin:0;display:grid;gap:10px;justify-items:center;min-width:0}
+.lb img{max-width:100%;max-height:80vh;border-radius:12px;display:block}
+.lb figcaption{color:#E8ECF1;font-family:var(--kr);font-size:14.5px;text-align:center}
+.lb button{font:inherit;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.lb .lb-x{position:absolute;top:max(16px, env(safe-area-inset-top, 0px));right:max(16px, env(safe-area-inset-right, 0px))}
+@media (max-width:760px){.proj{grid-template-columns:minmax(0,1fr) auto}.proj .pp{grid-column:1 / -1}.lb{grid-template-columns:minmax(0,1fr)}.lb .lb-p,.lb .lb-n{display:none}}
 /* light ↔ matter triad */
 .triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:40px}
 .triad > div{padding:28px 24px 28px 0;display:grid;gap:10px;align-content:start;min-width:0}
@@ -329,7 +363,9 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
     <a class="logo" href="#top"><i></i><span data-i18n="logo"></span></a>
     <ul>
       <li><a href="#research" data-i18n="navResearch"></a></li>
+      <li class="hide-sm"><a href="#projects" data-i18n="navProjects"></a></li>
       <li><a href="#people" data-i18n="navPeople"></a></li>
+      <li class="hide-sm"><a href="#gallery" data-i18n="navGallery"></a></li>
       <li><a href="#publications" data-i18n="navPubs"></a></li>
       <li class="hide-sm"><a href="#news" data-i18n="navNews"></a></li>
       <li><a class="cta" href="#join" data-i18n="navJoin"></a></li>
@@ -380,6 +416,17 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
   </div>
 </section>
 
+<section class="s" id="projects">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">Projects</span><h2 data-i18n="hProjects"></h2></div>
+      <p data-i18n="pProjects"></p>
+    </div>
+    <div class="proj-tools" id="projTools" role="group" aria-label="과제 상태"></div>
+    <div id="projList"></div>
+  </div>
+</section>
+
 <section class="s" id="people">
   <div class="wrap">
     <div class="s-head">
@@ -410,6 +457,16 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
       <summary><span data-i18n="alumni"></span><span class="mono" id="alumniN"></span></summary>
       <ul id="alumni"></ul>
     </details>
+  </div>
+</section>
+
+<section class="s" id="gallery">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="label">Gallery</span><h2 data-i18n="hGallery"></h2></div>
+      <p data-i18n="pGallery"></p>
+    </div>
+    <div id="galWrap"></div>
   </div>
 </section>
 
@@ -483,6 +540,12 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
     </div>
   </div>
 </section>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="사진 보기">
+  <button type="button" class="lb-x" id="lbX" aria-label="닫기">×</button>
+  <button type="button" class="lb-p" id="lbP" aria-label="이전 사진">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button type="button" class="lb-n" id="lbN" aria-label="다음 사진">›</button>
+</div>
 </main>
 
 <footer>
@@ -635,10 +698,10 @@ const CV = {
 const JOIN = {
  ko:[["대학원생 · 석사 / 박사 / 석박통합","화학, 물리, 재료, 화학공학 전공자. 나노소재 합성이나 분광 측정 경험이 있으면 좋습니다."],
      ["박사후연구원","SERS, 나노포토닉스, 광열·전기화학 촉매 분야 경력자를 찾습니다."],
-     ["학부연구생","정규 수업과 함께 실제 연구 주제를 맡습니다. 졸업생은 포스텍·서울대·성균관대·GIST·UNIST 대학원과 SK하이닉스·LG에너지솔루션·LG화학·한국화학연구원 등으로 진출했습니다."]],
+     ["학부연구생 · 캡스톤 연구생","정규 수업과 함께 실제 연구 주제를 맡습니다. 학부 때 시작한 연구를 이 연구실의 석사·박사과정에서 이어 갈 수 있고, 졸업생은 SK하이닉스·LG에너지솔루션·LG화학·한국화학연구원 등으로 진출했습니다."]],
  en:[["Graduate students · M.S. / Ph.D. / integrated","Backgrounds in chemistry, physics, materials science or chemical engineering. Experience in nanomaterial synthesis or spectroscopy is a plus."],
      ["Postdoctoral researchers","Experience in SERS, nanophotonics, or photothermal and electrochemical catalysis."],
-     ["Undergraduate researchers","Take on a real research project alongside coursework. Alumni have gone on to POSTECH, SNU, Sungkyunkwan, GIST and UNIST, and to SK hynix, LG Energy Solution, LG Chem and KRICT."]]
+     ["Undergraduate & capstone researchers","Take on a real research project alongside coursework. You can continue that research through an M.S. and Ph.D. in this lab; alumni have also joined SK hynix, LG Energy Solution, LG Chem and KRICT."]]
 };
 const I18N = {
  ko:{
@@ -646,7 +709,13 @@ const I18N = {
   hUg:"레이저, 플라즈마, AI.<br><em class=\"s\">진짜 장비</em>로 연구합니다.",
   pUg:"교과서 그림으로만 보던 장비를 직접 다룹니다. 레이저로 분자를 잡아내고, 플라즈마로 나노입자를 만들고, AI로 데이터를 분석합니다. <strong>반도체·디스플레이·에너지 기업과 대학원이 찾는 실전 역량</strong>을 학부 때 먼저 쌓으세요. 정규 수업이나 캡스톤디자인과 병행할 수 있습니다.",
   ugCta:"학부연구생 · 캡스톤 연구생 지원하기 →", ugAlumniH:"선배들은 지금", ugFaqH:"자주 묻는 질문",
-  ugAlumniP:"이 실험실에서 연구를 시작한 선배들은 반도체·배터리·화학 기업, 국책연구소, 국내 최상위 대학원으로 진출했습니다. 학부연구생으로 시작해 석사를 마치고 성균관대 박사과정에 진학한 선배만 세 명입니다.",
+  ugAlumniP:"이 실험실에서 연구를 시작한 선배들은 반도체·배터리·화학 기업과 국책연구소로 진출했습니다. 학부연구생 때 시작한 연구를 이 연구실의 석사·박사과정에서 이어 갈 수도 있습니다.",
+  navProjects:"과제", navGallery:"사진",
+  hProjects:"연구 <em class=\"s\">과제</em>", pProjects:"연구실이 수행했거나 수행 중인 연구과제 기록입니다.",
+  projEmptyH:"연구과제 목록을 정리하고 있습니다", projEmptyP:"진행 중인 과제와 완료된 과제가 곧 이곳에 올라옵니다.",
+  statusOngoing:"진행 중", statusDone:"완료", projAll:"전체",
+  hGallery:"연구실 <em class=\"s\">일상</em>", pGallery:"학회, 실험, 연구실 행사에서 함께한 순간들입니다. 사진을 누르면 크게 볼 수 있습니다.",
+  galEmptyH:"연구실 사진을 준비하고 있습니다", galEmptyP:"학회 발표, 실험, 연구실 행사 사진이 곧 올라옵니다.", galMore:"사진 더 보기",
   logo:"나노광화학 연구실", navResearch:"연구", navPeople:"구성원", navPubs:"논문", navNews:"소식", navJoin:"지원하기",
   kicker:"충남대학교 화학과 · 나노광화학 연구실",
   h1:"빛과 물질이<br><em>만나는 곳.</em>",
@@ -671,7 +740,13 @@ const I18N = {
   hUg:"Lasers, plasma, AI.<br>Research on <em class=\"s\">real equipment.</em>",
   pUg:"Run the instruments you have only seen in textbooks. Catch molecules with lasers, grow nanoparticles with plasma and analyze data with AI. <strong>Build the hands-on skills that semiconductor, display and energy companies and graduate schools look for</strong> while you are still an undergraduate. You can do this alongside regular classes or your capstone design course.",
   ugCta:"Apply as an undergraduate or capstone researcher →", ugAlumniH:"Where our undergraduates went", ugFaqH:"FAQ",
-  ugAlumniP:"Undergraduates who started research here have gone on to semiconductor, battery and chemical companies, national labs and top graduate schools. Three of them stayed for an M.S. and then entered the Ph.D. program at Sungkyunkwan University.",
+  ugAlumniP:"Undergraduates who started research here have gone on to semiconductor, battery and chemical companies and national labs. You can also carry the research you start as an undergraduate into an M.S. and Ph.D. in this lab.",
+  navProjects:"Projects", navGallery:"Gallery",
+  hProjects:"Research <em class=\"s\">projects</em>", pProjects:"A record of research projects the lab has carried out or is running now.",
+  projEmptyH:"We are compiling our project list", projEmptyP:"Ongoing and completed projects will appear here soon.",
+  statusOngoing:"Ongoing", statusDone:"Completed", projAll:"All",
+  hGallery:"Life in the <em class=\"s\">lab</em>", pGallery:"Moments from conferences, experiments and lab events. Click a photo to enlarge it.",
+  galEmptyH:"Lab photos are on the way", galEmptyP:"Photos from conferences, experiments and lab events will appear here soon.", galMore:"Show more photos",
   logo:"Nanophotochem Lab", navResearch:"Research", navPeople:"People", navPubs:"Publications", navNews:"News", navJoin:"Join us",
   kicker:"Laboratory of Nanophotochemistry · Chungnam National University",
   h1:"Where light <em>meets matter.</em>",
@@ -874,17 +949,19 @@ const UG = {
          ["PLASMA","Make nanoparticles with plasma","Grow gold nanoparticles with atmospheric-pressure plasma and check their structure under an electron microscope."],
          ["AI","Analyze data with AI","Classify spectra with Python and machine learning. Your coding skills turn directly into research results."],
          ["SIM","Simulate light","Compute electric fields around nanostructures with FDTD to design new ones, a technique used in semiconductor and photonic device design."]]},
- logos:{ko:["포스텍","서울대","성균관대","GIST","UNIST","SK하이닉스","LG에너지솔루션","LG화학","한국화학연구원","국방과학연구소"],
-        en:["POSTECH","Seoul National Univ.","Sungkyunkwan Univ.","GIST","UNIST","SK hynix","LG Energy Solution","LG Chem","KRICT","Agency for Defense Development"]},
+ logos:{ko:["SK하이닉스","LG에너지솔루션","LG화학","한국화학연구원","국방과학연구소","광동제약"],
+        en:["SK hynix","LG Energy Solution","LG Chem","KRICT","Agency for Defense Development","Kwang Dong Pharmaceutical"]},
  faq:{ko:[["캡스톤디자인으로 참여할 수 있나요?","네. 캡스톤디자인 과목과 연계해 한 학기 동안 연구실 프로젝트를 맡을 수 있습니다."],
           ["수업과 병행할 수 있나요?","네. 학부연구생은 정규 수업과 병행하며, 수업 일정에 맞춰 실험 시간을 정합니다."],
           ["실험 경험이 없어도 되나요?","괜찮습니다. 실험실 안전교육과 장비 사용법부터 박사후연구원·대학원생 선배와 함께 배웁니다."],
           ["외국인 연구원과 함께 일하나요?","네. 여러 나라에서 온 연구원들과 함께 일하며 연구에 필요한 영어 소통을 자연스럽게 익힙니다."],
+          ["이 연구실 대학원으로 이어서 진학할 수 있나요?","네. 학부연구생·캡스톤 때 시작한 연구 주제를 이 연구실의 석사·박사과정에서 그대로 이어 갈 수 있습니다."],
           ["어떻게 지원하나요?","이메일로 간단한 자기소개를 보내거나 자연과학대학 315호 연구실로 찾아오세요."]],
       en:[["Can I join through the capstone design course?","Yes. You can take on a lab project for a semester as part of your capstone design course."],
           ["Can I do this alongside classes?","Yes. Undergraduate researchers schedule lab time around their classes."],
           ["Do I need lab experience?","No. You start with lab safety and instrument training and learn alongside postdocs and graduate students."],
           ["Will I work with international researchers?","Yes. You work with researchers from several countries and pick up English for research communication along the way."],
+          ["Can I continue into graduate school in this lab?","Yes. You can carry the topic you start as an undergraduate or capstone researcher into an M.S. and Ph.D. here."],
           ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, College of Natural Sciences."]]}
 };
 function renderUG(){
@@ -911,7 +988,64 @@ const TRIAD = {
 function renderTriad(){
   $("#triad").innerHTML = TRIAD[L].map(x => { const [a,b] = x[2].split(" → "); return `<div><span class="m"><i class="${x[0]}">${a}</i>→<i class="${x[1]}">${b}</i></span><b>${x[3]}</b><span>${x[4]}</span></div>`; }).join("");
 }
-function renderAll(){ renderStatic(); renderTriad(); renderBento(); renderPeople(); renderUG(); renderOther(); renderChips(); renderPubs(); }
+/* ===================== projects ===================== */
+// 과제 추가: {period:"2024.03 – 2027.02", status:"ongoing" 또는 "done", title:{ko:"",en:""}, funder:{ko:"",en:""}, role:{ko:"연구책임자",en:"Principal Investigator"}}
+const PROJECTS = [];
+let projFilter = "all";
+function renderProjects(){
+  const tools = $("#projTools"), el = $("#projList");
+  if (!PROJECTS.length){ tools.hidden = true; el.innerHTML = `<div class="empty-card"><b>${t("projEmptyH")}</b><p>${t("projEmptyP")}</p></div>`; return; }
+  tools.hidden = false;
+  const n = k => PROJECTS.filter(p => k==="all" || p.status===k).length;
+  tools.innerHTML = [["all",t("projAll")],["ongoing",t("statusOngoing")],["done",t("statusDone")]].map(([k,l]) => `<button type="button" class="chip" id="pf-${k}" data-k="${k}" aria-pressed="${projFilter===k}">${l} ${n(k)}</button>`).join("");
+  const pick = o => (o && (o[L] || o.ko)) || "";
+  el.innerHTML = `<div class="proj-list">` + PROJECTS.filter(p => projFilter==="all" || p.status===projFilter).map(p => `
+    <article class="proj"><div class="pp">${esc(p.period)}</div>
+      <div class="pm"><b>${esc(pick(p.title))}</b><span>${esc(pick(p.funder))}${p.role?" · "+esc(pick(p.role)):""}</span></div>
+      <span class="st2 ${p.status}">${p.status==="ongoing"?t("statusOngoing"):t("statusDone")}</span></article>`).join("") + `</div>`;
+}
+$("#projTools").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b){ projFilter = b.dataset.k; renderProjects(); } });
+
+/* ===================== gallery ===================== */
+// 사진은 GitHub 저장소의 photos 폴더에 올리면 자동으로 나타납니다.
+// 파일 이름 예: 2026-05-20_대한화학회 춘계학술대회.jpg  →  날짜와 설명으로 표시
+const GALLERY = {repo:"ilsunyoon-lab/ilsunyoon-lab.github.io", dir:"photos", step:12};
+let PHOTOS = [], galShown = GALLERY.step, lbIndex = 0;
+function parsePhoto(name){
+  const base = name.replace(/\.[^.]+$/,"");
+  const m = base.match(/^(\d{4})[-.]?(\d{2})?[-.]?(\d{2})?[_\s-]+(.+)$/);
+  const date = m ? [m[1],m[2],m[3]].filter(Boolean).join(".") : "";
+  const cap = (m ? m[4] : base).replace(/_/g," ").trim();
+  return {src: GALLERY.dir + "/" + encodeURIComponent(name), date, cap, name};
+}
+async function loadPhotos(){
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GALLERY.repo}/contents/${GALLERY.dir}`, {headers:{Accept:"application/vnd.github+json"}});
+    if (!r.ok) throw new Error(r.status);
+    const list = await r.json();
+    PHOTOS = list.filter(f => f.type==="file" && /\.(jpe?g|png|webp|gif|avif)$/i.test(f.name)).map(f => parsePhoto(f.name)).sort((a,b) => b.name.localeCompare(a.name));
+  } catch(e){ PHOTOS = []; }
+  renderGallery();
+}
+function renderGallery(){
+  const w = $("#galWrap");
+  if (!PHOTOS.length){ w.innerHTML = `<div class="empty-card"><b>${t("galEmptyH")}</b><p>${t("galEmptyP")}</p></div>`; return; }
+  w.innerHTML = `<div class="gal">${PHOTOS.slice(0,galShown).map((ph,i) => `<figure><button type="button" data-i="${i}" aria-label="${esc(ph.cap)}"><img src="${ph.src}" alt="${esc(ph.cap)}" loading="lazy"></button><figcaption>${ph.date?`<small>${ph.date}</small>`:""}${esc(ph.cap)}</figcaption></figure>`).join("")}</div>`
+    + (PHOTOS.length > galShown ? `<div class="gal-more"><button type="button" id="galMore">${t("galMore")} (${PHOTOS.length-galShown})</button></div>` : "");
+}
+function openLb(i){ lbIndex = (i + PHOTOS.length) % PHOTOS.length; const ph = PHOTOS[lbIndex]; $("#lbImg").src = ph.src; $("#lbImg").alt = ph.cap; $("#lbCap").textContent = (ph.date ? ph.date + " · " : "") + ph.cap; $("#lb").hidden = false; document.body.style.overflow = "hidden"; $("#lbX").focus(); }
+function closeLb(){ $("#lb").hidden = true; document.body.style.overflow = ""; }
+$("#galWrap").addEventListener("click", e => {
+  if (e.target.closest("#galMore")){ galShown += GALLERY.step; renderGallery(); return; }
+  const b = e.target.closest("button[data-i]"); if (b) openLb(+b.dataset.i);
+});
+$("#lbX").addEventListener("click", closeLb);
+$("#lbP").addEventListener("click", () => openLb(lbIndex-1));
+$("#lbN").addEventListener("click", () => openLb(lbIndex+1));
+$("#lb").addEventListener("click", e => { if (e.target.id === "lb") closeLb(); });
+document.addEventListener("keydown", e => { if ($("#lb").hidden) return; if (e.key==="Escape") closeLb(); if (e.key==="ArrowLeft") openLb(lbIndex-1); if (e.key==="ArrowRight") openLb(lbIndex+1); });
+
+function renderAll(){ renderStatic(); renderTriad(); renderBento(); renderProjects(); renderPeople(); renderGallery(); renderUG(); renderOther(); renderChips(); renderPubs(); }
 function setLang(k){ if (k===L) return; L = k; try{ localStorage.setItem("npl-lang", k); }catch(e){} renderAll(); window.__heroResize && window.__heroResize(); }
 
 $(".lang").addEventListener("click", e => { const b = e.target.closest("button[data-lang]"); if (b) setLang(b.dataset.lang); });
@@ -926,6 +1060,7 @@ $("#copyMail").addEventListener("click", () => {
   try { navigator.clipboard.writeText(txt).then(done, fb); } catch(e){ fb(); }
 });
 renderAll();
+loadPhotos();
 </script>
 
 </body>
