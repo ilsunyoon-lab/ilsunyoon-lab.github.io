@@ -776,9 +776,12 @@ const boldMe = s => esc(s).replace(/\b(I Yoon|IS Yoon)\b/g,"<b>$1</b>");
 const scholar = t => "https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + t + '"');
 const journals = PUBS.filter(p => p[7] === "j");
 $("#nPapers").textContent = journals.length;
-let L = "ko";
+// 언어 결정 순서: 주소의 #en/#ko → 방문자가 직접 고른 언어 → 브라우저 언어(한국어면 한글판, 그 외는 영어판)
+const browserLangs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "ko"];
+let L = browserLangs.some(l => /^ko\b/i.test(l)) ? "ko" : "en";
 try { const s = localStorage.getItem("npl-lang"); if (s === "en" || s === "ko") L = s; } catch(e){}
 if (location.hash === "#en") L = "en";
+if (location.hash === "#ko") L = "ko";
 const t = k => I18N[L][k];
 
 /* ===================== hero canvas: plasmonic field ===================== */
