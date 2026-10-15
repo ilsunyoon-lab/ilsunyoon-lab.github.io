@@ -732,7 +732,7 @@ const I18N = {
   hPat:"미국 <em class=\"s\">특허</em>", pPat:"등록 3건, 출원 8건. 나노와이어 SERS 센서와 나노임프린트 패턴 공정이 중심입니다.", granted:"등록", pending:"출원",
   hNews:"<em class=\"s\">소식</em>",
   hJoin:"함께 <em class=\"s\">빛</em>을 다룰 사람을 찾습니다.", mailK:"CV와 관심 연구 주제를 보내 주세요", copy:"이메일 주소 복사", copied:"복사했습니다 ✓", selected:"주소를 선택했습니다",
-  addr:"34134 대전광역시 유성구 대학로 99<br>충남대학교 자연과학대학 화학과 · 나노광화학 연구실 315호<br>Tel +82-42-821-6546",
+  addr:"34134 대전광역시 유성구 대학로 99<br>충남대학교 자연과학대학 4호관 화학과<br>연구실 315호 · 학생연구실 316호 · 교수연구실 302호<br>Tel +82-42-821-6546",
   foot:"© 2026 충남대학교 화학과 나노광화학 연구실", updated:"업데이트 2026.10", alumniN:n=>`${n}명`
  },
  en:{
@@ -763,7 +763,7 @@ const I18N = {
   hPat:"US <em class=\"s\">patents</em>", pPat:"3 granted and 8 pending, centered on nanowire SERS sensors and nanoimprint patterning.", granted:"Granted", pending:"Pending",
   hNews:"Latest",
   hJoin:"Come <em class=\"s\">shine</em> a light with us.", mailK:"Send your CV and research interests", copy:"Copy email", copied:"Copied ✓", selected:"Address selected",
-  addr:"Dept. of Chemistry, Chungnam National University<br>99 Daehak-ro, Yuseong-gu, Daejeon 34134, Korea · Room 315<br>Tel +82-42-821-6546",
+  addr:"Dept. of Chemistry, Building 4, College of Natural Sciences<br>Chungnam National University, 99 Daehak-ro, Yuseong-gu, Daejeon 34134, Korea<br>Lab: Room 315 · Student office: Room 316 · Professor’s office: Room 302<br>Tel +82-42-821-6546",
   foot:"© 2026 Laboratory of Nanophotochemistry, Chungnam National University", updated:"Updated Oct 2026", alumniN:n=>`${n} alumni`
  }
 };
@@ -959,13 +959,13 @@ const UG = {
           ["실험 경험이 없어도 되나요?","괜찮습니다. 실험실 안전교육과 장비 사용법부터 박사후연구원·대학원생 선배와 함께 배웁니다."],
           ["외국인 연구원과 함께 일하나요?","네. 여러 나라에서 온 연구원들과 함께 일하며 연구에 필요한 영어 소통을 자연스럽게 익힙니다."],
           ["이 연구실 대학원으로 이어서 진학할 수 있나요?","네. 학부연구생·캡스톤 때 시작한 연구 주제를 이 연구실의 석사·박사과정에서 그대로 이어 갈 수 있습니다."],
-          ["어떻게 지원하나요?","이메일로 간단한 자기소개를 보내거나 자연과학대학 315호 연구실로 찾아오세요."]],
+          ["어떻게 지원하나요?","이메일로 간단한 자기소개를 보내거나 자연과학대학 4호관 315호 연구실로 찾아오세요. (316호 학생연구실 또는 302호 교수연구실로 방문하세요)"]],
       en:[["Can I join through the capstone design course?","Yes. You can take on a lab project for a semester as part of your capstone design course."],
           ["Can I do this alongside classes?","Yes. Undergraduate researchers schedule lab time around their classes."],
           ["Do I need lab experience?","No. You start with lab safety and instrument training and learn alongside postdocs and graduate students."],
           ["Will I work with international researchers?","Yes. You work with researchers from several countries and pick up English for research communication along the way."],
           ["Can I continue into graduate school in this lab?","Yes. You can carry the topic you start as an undergraduate or capstone researcher into an M.S. and Ph.D. here."],
-          ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, College of Natural Sciences."]]}
+          ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, Building 4, College of Natural Sciences. You can also visit the student office (Room 316) or the professor’s office (Room 302)."]]}
 };
 function renderUG(){
   $("#ugDo").innerHTML = UG.do[L].map(d => `<div><span class="tg">${d[0]}</span><b>${d[1]}</b><p>${d[2]}</p></div>`).join("");
