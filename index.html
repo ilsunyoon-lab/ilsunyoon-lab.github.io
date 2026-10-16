@@ -152,6 +152,10 @@ section.s{padding-block:clamp(80px,11vw,140px) 0}
 .member{border-radius:20px;padding:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0}
 .member b{font-weight:600;font-size:16px;letter-spacing:-.01em;display:block}
 .member span{font-family:var(--kr);font-size:13px;color:var(--ink-3)}
+.member .mtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.member .mtag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:var(--gold);color:var(--gold-ink);white-space:nowrap}
+.member .mnote{margin:0;margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-family:var(--kr);font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.member.featured{border-color:color-mix(in srgb,var(--gold) 55%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,var(--gold) 9%,var(--surface)),var(--surface) 60%)}
 .avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff;position:relative;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 45%),var(--av,#2F7BFF)}
 .avatar::after{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:var(--spectrum);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.75}
 .alumni{margin-top:16px;border-radius:20px;border:1px solid var(--line);padding:24px 26px}
@@ -263,6 +267,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 
 
 [hidden]{display:none!important}
+.join-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.join-tags span{font-family:var(--kr);font-size:14px;font-weight:500;padding:8px 15px;border-radius:999px;background:rgba(242,181,68,.14);border:1px solid rgba(242,181,68,.4);color:#FFD68A}
 /* projects */
 .proj-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .proj-list{border:1px solid var(--line);border-radius:20px;background:var(--surface);overflow:hidden}
@@ -528,6 +534,7 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
     <div class="join">
       <span class="label" style="color:#A6B0BE">Join us</span>
       <h2 style="margin-top:18px" data-i18n="hJoin"></h2>
+      <div class="join-tags" id="joinTags"></div>
       <div class="join-grid">
         <ul id="joinList"></ul>
         <div class="mailbox">
@@ -656,8 +663,8 @@ const THEMES = [
   kko:["고굴절 ZrO₂","투명 필름"], ken:["High-index ZrO₂","Transparent films"]}
 ];
 const MEMBERS = [
- {name:"Trinh Ba Thong", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#2F7BFF"},
- {name:"Netrapal Singh", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#13A6A0"},
+ {name:"Trinh Ba Thong", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#2F7BFF", note:{ko:"본 연구실에서 석사·박사 학위를 받았습니다", en:"Earned his M.S. and Ph.D. in this lab"}},
+ {name:"Netrapal Singh", ko:"박사후연구원", en:"Postdoctoral Researcher", c:"#13A6A0", tag:"Brain Pool", note:{ko:"한국연구재단 Brain Pool(해외우수과학자 유치사업)으로 초빙한 우수 과학자", en:"Outstanding scientist invited through the NRF Brain Pool program"}},
  {name:"Sy Khiem Nguyen", ko:"박사과정", en:"Ph.D. Student", c:"#7A5CFF"},
  {name:"Khanh Viet Nguyen", ko:"박사과정", en:"Ph.D. Student", c:"#E0703A"},
  {name:"김건효", ko:"학부연구생", en:"Undergraduate Researcher", c:"#C24B6B", ini:"건효"}
@@ -696,11 +703,11 @@ const CV = {
         en:["Professor of Chemistry, CNU","Chair, Department of Chemistry","Director, PRIDE Research Institute","Member, CNU Semiconductor Joint Research Center"]}
 };
 const JOIN = {
- ko:[["대학원생 · 석사 / 박사 / 석박통합","화학, 물리, 재료, 화학공학 전공자. 나노소재 합성이나 분광 측정 경험이 있으면 좋습니다."],
-     ["박사후연구원","SERS, 나노포토닉스, 광열·전기화학 촉매 분야 경력자를 찾습니다."],
+ ko:[["대학원생 · 석사 / 박사 / 석박통합","한국인·외국인 학생 모두 지원할 수 있습니다. 화학, 물리, 재료, 화학공학 전공자를 찾으며, 나노소재 합성이나 분광 측정 경험이 있으면 좋습니다."],
+     ["박사후연구원 · Brain Pool","SERS, 나노포토닉스, 광열·전기화학 촉매 분야 경력자를 찾습니다. 한국연구재단 Brain Pool(해외우수과학자 유치사업)로 지원하려는 박사후연구원은 언제든지 연락 주세요. 현재 Netrapal Singh 박사가 Brain Pool 과학자로 함께하고 있습니다."],
      ["학부연구생 · 캡스톤 연구생","정규 수업과 함께 실제 연구 주제를 맡습니다. 학부 때 시작한 연구를 이 연구실의 석사·박사과정에서 이어 갈 수 있고, 졸업생은 SK하이닉스·LG에너지솔루션·LG화학·한국화학연구원 등으로 진출했습니다."]],
- en:[["Graduate students · M.S. / Ph.D. / integrated","Backgrounds in chemistry, physics, materials science or chemical engineering. Experience in nanomaterial synthesis or spectroscopy is a plus."],
-     ["Postdoctoral researchers","Experience in SERS, nanophotonics, or photothermal and electrochemical catalysis."],
+ en:[["Graduate students · M.S. / Ph.D. / integrated","Open to both Korean and international students. We look for backgrounds in chemistry, physics, materials science or chemical engineering; experience in nanomaterial synthesis or spectroscopy is a plus."],
+     ["Postdoctoral researchers · Brain Pool","Experience in SERS, nanophotonics, or photothermal and electrochemical catalysis. Postdocs who wish to apply through the NRF Brain Pool program are welcome to contact us at any time. Dr. Netrapal Singh currently works with us as a Brain Pool scientist."],
      ["Undergraduate & capstone researchers","Take on a real research project alongside coursework. You can continue that research through an M.S. and Ph.D. in this lab; alumni have also joined SK hynix, LG Energy Solution, LG Chem and KRICT."]]
 };
 const I18N = {
@@ -895,10 +902,11 @@ function renderPeople(){
   $("#career").innerHTML = CV.career.map(li).join("");
   $("#edu").innerHTML = CV.edu.map(li).join("");
   const initials = m => m.ini || m.name.split(" ").filter(Boolean).map(w=>w[0]).slice(0,2).join("");
-  $("#team").innerHTML = MEMBERS.map(m => `<div class="member"><div class="avatar" style="--av:${m.c}">${esc(initials(m))}</div><div><b>${esc(m.name)}</b><span>${m[L]}</span></div></div>`).join("");
+  $("#team").innerHTML = MEMBERS.map(m => `<div class="member${m.tag?" featured":""}"><div class="mtop"><div class="avatar" style="--av:${m.c}">${esc(initials(m))}</div>${m.tag?`<span class="mtag">${esc(m.tag)}</span>`:""}</div><div><b>${esc(m.name)}</b><span>${m[L]}</span></div>${m.note?`<p class="mnote">${esc(m.note[L])}</p>`:""}</div>`).join("");
   $("#alumni").innerHTML = ALUMNI.map(a => { const d = L==="ko"?a[3]:a[4]; return `<li>${a[0]} <span>${L==="ko"?a[1]:a[2]}${d?" → "+d:""}</span></li>`; }).join("");
   $("#alumniN").textContent = t("alumniN")(ALUMNI.length);
   $("#joinList").innerHTML = JOIN[L].map(j => `<li><b>${j[0]}</b>${j[1]}</li>`).join("");
+  $("#joinTags").innerHTML = (L==="ko" ? ["한국인·외국인 학생 모두 지원 가능","Brain Pool 박사후연구원 상시 지원","학부연구생 · 캡스톤 연구생 모집"] : ["Korean & international students welcome","Brain Pool postdocs: apply any time","Undergraduate & capstone researchers"]).map(x => `<span>${x}</span>`).join("");
 }
 function renderOther(){
   $("#hl").innerHTML = FEATURED.map(f => {
@@ -957,14 +965,16 @@ const UG = {
  faq:{ko:[["캡스톤디자인으로 참여할 수 있나요?","네. 캡스톤디자인 과목과 연계해 한 학기 동안 연구실 프로젝트를 맡을 수 있습니다."],
           ["수업과 병행할 수 있나요?","네. 학부연구생은 정규 수업과 병행하며, 수업 일정에 맞춰 실험 시간을 정합니다."],
           ["실험 경험이 없어도 되나요?","괜찮습니다. 실험실 안전교육과 장비 사용법부터 박사후연구원·대학원생 선배와 함께 배웁니다."],
+          ["외국인 학생도 지원할 수 있나요?","네. 한국인·외국인 학생 모두 지원할 수 있습니다. 연구실에서는 한국어와 영어를 함께 씁니다."],
           ["외국인 연구원과 함께 일하나요?","네. 여러 나라에서 온 연구원들과 함께 일하며 연구에 필요한 영어 소통을 자연스럽게 익힙니다."],
-          ["이 연구실 대학원으로 이어서 진학할 수 있나요?","네. 학부연구생·캡스톤 때 시작한 연구 주제를 이 연구실의 석사·박사과정에서 그대로 이어 갈 수 있습니다."],
+          ["이 연구실 대학원으로 이어서 진학할 수 있나요?","네. 학부연구생·캡스톤 때 시작한 연구 주제를 이 연구실의 석사·박사과정에서 그대로 이어 갈 수 있습니다. 현재 박사후연구원인 Trinh Ba Thong 박사도 이 연구실에서 석사와 박사를 마쳤습니다."],
           ["어떻게 지원하나요?","이메일로 간단한 자기소개를 보내거나 자연과학대학 4호관 315호 연구실로 찾아오세요. (316호 학생연구실 또는 302호 교수연구실로 방문하세요)"]],
       en:[["Can I join through the capstone design course?","Yes. You can take on a lab project for a semester as part of your capstone design course."],
           ["Can I do this alongside classes?","Yes. Undergraduate researchers schedule lab time around their classes."],
           ["Do I need lab experience?","No. You start with lab safety and instrument training and learn alongside postdocs and graduate students."],
+          ["Can international students apply?","Yes. Both Korean and international students are welcome. The lab works in both Korean and English."],
           ["Will I work with international researchers?","Yes. You work with researchers from several countries and pick up English for research communication along the way."],
-          ["Can I continue into graduate school in this lab?","Yes. You can carry the topic you start as an undergraduate or capstone researcher into an M.S. and Ph.D. here."],
+          ["Can I continue into graduate school in this lab?","Yes. You can carry the topic you start as an undergraduate or capstone researcher into an M.S. and Ph.D. here. Our postdoc Dr. Trinh Ba Thong earned both his M.S. and Ph.D. in this lab."],
           ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, Building 4, College of Natural Sciences. You can also visit the student office (Room 316) or the professor’s office (Room 302)."]]}
 };
 function renderUG(){
