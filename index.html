@@ -211,6 +211,18 @@ section.s{padding-block:clamp(80px,11vw,140px) 0}
 .pat .st.a{border:1px solid var(--line);color:var(--ink-3)}
 .pat b{font-weight:500;font-size:14.5px;line-height:1.45}
 .pat .mono{font-size:12px;color:var(--ink-3)}
+.pat .trf{font-family:var(--kr);color:var(--gold);font-weight:500}
+.tt{margin-bottom:12px}
+.tt-card{border-radius:20px;padding:26px 28px;background:var(--surface);border:1px solid var(--line);display:grid;gap:14px}
+.tt-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tt-head .mono{font-size:13px;color:var(--ink-3)}
+.tt-card h3{font-family:var(--kr);font-size:clamp(18px,1.8vw,22px);font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.tt-card dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
+.tt-card dl div{display:grid;gap:2px;min-width:0}
+.tt-card dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+html[lang="ko"] .tt-card dt{font-family:var(--kr);letter-spacing:.02em}
+.tt-card dd{margin:0;font-family:var(--kr);font-size:14.5px;line-height:1.55}
+@media (max-width:760px){.tt-card dl{grid-template-columns:minmax(0,1fr)}}
 
 /* collaborators */
 .collab{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -510,6 +522,7 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
       <div><span class="label">Patents</span><h2 class="h-sm" data-i18n="hPat"></h2></div>
       <p data-i18n="pPat"></p>
     </div>
+    <div class="tt" id="tt"></div>
     <div class="pat" id="pat"></div>
   </div>
 </section>
@@ -631,11 +644,16 @@ const PUBS = [
  [2007,"Simple vapor-phase synthesis of single-crystalline Ag nanowires and single-nanowire surface-enhanced Raman scattering","P Mohanty, I Yoon, T Kang, K Seo, KSK Varadwaj, W Choi, QH Park, et al.","Journal of the American Chemical Society","129 (31), 9576–9577",147,"sers","j"],
  [2007,"Conformational study of tyramine and its water clusters by laser spectroscopy","I Yoon, K Seo, S Lee, Y Lee, B Kim","The Journal of Physical Chemistry A","111 (10), 1800–1807",34,"nano","j"]
 ];
+const TRANSFERS = [
+ {date:"2024.12",
+  ko:{title:"표면증강 라만산란(SERS) 기판, 이를 포함하는 분자 검출용 소자 및 이의 제조방법", to:"㈜브라이트퀀텀", type:"특허권 양도 · (재)대전테크노파크 중개", basis:"미국 등록특허 US 11,085,881 (2021) · 국내 우선권 출원 10-2016-0060211 · PCT/KR2017/005115", inv:"이동한, 이종민, 윤일선, 백종서"},
+  en:{title:"Surface-enhanced Raman scattering (SERS) substrate, molecule-detection element including it, and its fabrication method", to:"Bright Quantum Inc.", type:"Assignment of patent rights, brokered by Daejeon Technopark", basis:"US Patent 11,085,881 (2021) · Korean priority application 10-2016-0060211 · PCT/KR2017/005115", inv:"Donghan Lee, JongMin Lee, Ilsun Yoon, Jongseo Baek"}}
+];
 const PATENTS = [
+ [2021,"Surface-enhanced Raman scattering substrate, element for detecting molecule including the same, and method for manufacturing the same","US 11,085,881","g",1],
  [2019,"Method of transferring reverse pattern by using imprint process","US 10,185,218","g"],
  [2018,"Master wafer, method of manufacturing the same, and method of manufacturing optical device by using the same","US 10,007,124","g"],
  [2016,"Ultra-sensitive force sensing based on evanescent light","US 9,459,163","g"],
- [2019,"Surface-enhanced Raman scattering substrate, element for detecting molecule including the same, and method for manufacturing the same","US App. 16/301,922","a"],
  [2016,"Case in which electrical parts are accommodated and electronic device having the same","US App. 14/918,663","a"],
  [2016,"Pattern structure and method of manufacturing the pattern structure, and liquid crystal display device","US App. 14/817,496","a"],
  [2016,"Pattern structure and method of manufacturing the pattern structure","US App. 14/733,234","a"],
@@ -765,7 +783,7 @@ const I18N = {
   hPubs:"<em class=\"s\">논문</em>", pPubs:"연구실을 대표하는 논문과 전체 논문 목록입니다. 카드나 제목을 누르면 Google Scholar에서 원문을 찾습니다.",
   conf:"학회 발표 포함", search:"제목·저자·저널 검색", all:"전체", cited:"회 인용", confTag:"학회",
   count:(n,c)=>`${n}편 · 피인용 ${c}회`, empty:"조건에 맞는 논문이 없습니다. 검색어를 줄이거나 ‘전체’를 눌러 보세요.", papers:n=>`논문 ${n}편 →`,
-  hPat:"미국 <em class=\"s\">특허</em>", pPat:"등록 3건, 출원 8건. 나노와이어 SERS 센서와 나노임프린트 패턴 공정이 중심입니다.", granted:"등록", pending:"출원",
+  hPat:"특허 · <em class=\"s\">기술이전</em>", pPat:"미국 등록 4건, 출원 7건. 나노와이어 SERS 센서와 나노임프린트 패턴 공정이 중심이며, SERS 기판 특허는 2024년 기업에 이전되었습니다.", granted:"등록", pending:"출원", transferred:"기술이전", ttLabel:"기술이전", ttTo:"이전 기업", ttType:"이전 형태", ttBasis:"대상 특허", ttInv:"발명자",
   hNews:"<em class=\"s\">소식</em>",
   hJoin:"함께 <em class=\"s\">빛</em>을 다룰 사람을 찾습니다.", mailK:"CV와 관심 연구 주제를 보내 주세요", copy:"이메일 주소 복사", copied:"복사했습니다 ✓", selected:"주소를 선택했습니다",
   addr:"34134 대전광역시 유성구 대학로 99<br>충남대학교 자연과학대학 4호관 화학과<br>연구실 315호 · 학생연구실 316호 · 교수연구실 302호<br>Tel +82-42-821-6546",
@@ -796,7 +814,7 @@ const I18N = {
   hPubs:"Selected <em class=\"s\">work</em>", pPubs:"Papers that define the lab, followed by the full list. Cards and titles link to Google Scholar.",
   conf:"Include conference papers", search:"Search title, author, journal", all:"All", cited:"citations", confTag:"Conf.",
   count:(n,c)=>`${n} papers · ${c} citations`, empty:"No papers match. Try a shorter search or select ‘All’.", papers:n=>`${n} papers →`,
-  hPat:"US <em class=\"s\">patents</em>", pPat:"3 granted and 8 pending, centered on nanowire SERS sensors and nanoimprint patterning.", granted:"Granted", pending:"Pending",
+  hPat:"Patents & <em class=\"s\">transfer</em>", pPat:"4 granted and 7 pending US patents, centered on nanowire SERS sensors and nanoimprint patterning. Our SERS substrate patent was transferred to industry in 2024.", granted:"Granted", pending:"Pending", transferred:"Transferred", ttLabel:"Technology transfer", ttTo:"Transferee", ttType:"Type", ttBasis:"Patents", ttInv:"Inventors",
   hNews:"Latest",
   hJoin:"Come <em class=\"s\">shine</em> a light with us.", mailK:"Send your CV and research interests", copy:"Copy email", copied:"Copied ✓", selected:"Address selected",
   addr:"Dept. of Chemistry, Building 4, College of Natural Sciences<br>Chungnam National University, 99 Daehak-ro, Yuseong-gu, Daejeon 34134, Korea<br>Lab: Room 315 · Student office: Room 316 · Professor’s office: Room 302<br>Tel +82-42-821-6546",
@@ -952,7 +970,16 @@ function renderOther(){
       <div class="s2">${sub}</div>
     </a>`;
   }).join("");
-  $("#pat").innerHTML = PATENTS.map(p => `<div><span class="st ${p[3]}">${p[3]==="g"?t("granted"):t("pending")}</span><b>${esc(p[1])}</b><span class="mono">${p[2]} · ${p[0]}</span></div>`).join("");
+  $("#pat").innerHTML = PATENTS.map(p => `<div><span class="st ${p[3]}">${p[3]==="g"?t("granted"):t("pending")}</span><b>${esc(p[1])}</b><span class="mono">${p[2]} · ${p[0]}${p[4]?` · <span class="trf">${t("transferred")}</span>`:""}</span></div>`).join("");
+  $("#tt").innerHTML = TRANSFERS.map(x => { const d = x[L]; return `<article class="tt-card">
+      <div class="tt-head"><span class="label">${t("ttLabel")}</span><span class="mono">${x.date}</span></div>
+      <h3>${d.title}</h3>
+      <dl>
+        <div><dt>${t("ttTo")}</dt><dd>${d.to}</dd></div>
+        <div><dt>${t("ttType")}</dt><dd>${d.type}</dd></div>
+        <div><dt>${t("ttBasis")}</dt><dd>${d.basis}</dd></div>
+        <div><dt>${t("ttInv")}</dt><dd>${d.inv}</dd></div>
+      </dl></article>`; }).join("");
   $("#newsList").innerHTML = NEWS.map(n => `<article><span class="tag">${n.tag[L]}</span><h3>${n[L]}</h3><span class="j">${esc(n.j)}</span></article>`).join("");
 }
 
