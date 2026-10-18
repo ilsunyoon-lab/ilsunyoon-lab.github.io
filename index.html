@@ -320,6 +320,33 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 .lb button{font:inherit;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:24px;line-height:1;cursor:pointer}
 .lb .lb-x{position:absolute;top:max(16px, env(safe-area-inset-top, 0px));right:max(16px, env(safe-area-inset-right, 0px))}
 @media (max-width:760px){.proj{grid-template-columns:minmax(0,1fr) auto}.proj .pp{grid-column:1 / -1}.lb{grid-template-columns:minmax(0,1fr)}.lb .lb-p,.lb .lb-n{display:none}}
+/* students section */
+.ug-top{margin-bottom:8px}
+.ug-top .ug-head p{max-width:46em}
+.ug-block{margin-top:44px}
+.ug-bh{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+.ug-bh h3{font-family:var(--kr);font-size:clamp(24px,2.6vw,32px);font-weight:700;letter-spacing:-.03em}
+.ug-bh p{margin:0;max-width:40em;font-family:var(--kr);font-size:15px;color:var(--ink-2)}
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.wk{border-radius:20px;padding:24px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0}
+.wk .tg{align-self:flex-start;font-family:var(--kr);font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;background:var(--glow);color:var(--gold)}
+.wk h4{margin:0;font-family:var(--kr);font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.wk p{margin:0;font-family:var(--kr);font-size:14px;line-height:1.6;color:var(--ink-2)}
+.wk p span,.wk .wk-l{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+html[lang="ko"] .wk p span,html[lang="ko"] .wk .wk-l{font-family:var(--kr);letter-spacing:.02em;text-transform:none}
+.wk-learn{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.wk-learn .wk-l{width:100%}
+.wk-learn i{font-style:normal;font-family:var(--kr);font-size:13px;padding:4px 10px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line)}
+.wk-who{margin-top:auto !important;padding-top:12px;border-top:1px solid var(--line)}
+.careers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.careers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cr{border-radius:18px;padding:20px;background:var(--surface);border:1px solid var(--line);display:grid;gap:6px;align-content:start;min-width:0}
+.cr-f{font-family:var(--kr);font-size:12px;color:var(--gold);font-weight:500}
+.cr b{font-family:var(--kr);font-size:18px;font-weight:700;letter-spacing:-.02em}
+.cr-p{font-family:var(--kr);font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.cr-p em{font-style:normal;color:var(--ink-3);font-size:12.5px}
+@media (max-width:760px){.work{grid-template-columns:minmax(0,1fr)}}
+
 /* light ↔ matter triad */
 .triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:40px}
 .triad > div{padding:28px 24px 28px 0;display:grid;gap:10px;align-content:start;min-width:0}
@@ -387,6 +414,7 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
   <div class="nav-in">
     <a class="logo" href="#top"><i></i><span data-i18n="logo"></span></a>
     <ul>
+      <li class="hide-sm"><a href="#undergrad" data-i18n="navStudents"></a></li>
       <li><a href="#research" data-i18n="navResearch"></a></li>
       <li class="hide-sm"><a href="#projects" data-i18n="navProjects"></a></li>
       <li><a href="#people" data-i18n="navPeople"></a></li>
@@ -430,6 +458,33 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
 </div>
 
 <main>
+<section class="s" id="undergrad">
+  <div class="wrap">
+    <div class="ug-top">
+      <div class="ug-head">
+        <span class="label">For Students</span>
+        <h2 data-i18n="hUg"></h2>
+        <p data-i18n="pUg"></p>
+        <div class="btns"><a class="btn p" href="#join" data-i18n="ugCta"></a></div>
+      </div>
+    </div>
+
+    <div class="ug-block">
+      <div class="ug-bh"><h3 data-i18n="ugWorkH"></h3><p data-i18n="ugWorkP"></p></div>
+      <div class="work" id="ugWork"></div>
+    </div>
+
+    <div class="ug-block">
+      <div class="ug-bh"><h3 data-i18n="ugCareerH"></h3><p data-i18n="ugCareerP"></p></div>
+      <div class="careers" id="ugCareers"></div>
+    </div>
+
+    <div class="ug-block">
+      <div class="ug-faq"><h3 data-i18n="ugFaqH"></h3><div id="ugFaq"></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="s" id="research">
   <div class="wrap">
     <div class="s-head">
@@ -536,23 +591,6 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
   </div>
 </section>
 
-<section class="s" id="undergrad">
-  <div class="wrap">
-    <div class="ug">
-      <div class="ug-head">
-        <span class="label">Undergraduate Research</span>
-        <h2 data-i18n="hUg"></h2>
-        <p data-i18n="pUg"></p>
-        <div class="btns"><a class="btn p" href="#join" data-i18n="ugCta"></a></div>
-      </div>
-      <div class="ug-do" id="ugDo"></div>
-    </div>
-    <div class="ug-row">
-      <div class="ug-alumni"><h3 data-i18n="ugAlumniH"></h3><div class="logos" id="ugLogos"></div><p data-i18n="ugAlumniP"></p></div>
-      <div class="ug-faq"><h3 data-i18n="ugFaqH"></h3><div id="ugFaq"></div></div>
-    </div>
-  </div>
-</section>
 
 <section id="join">
   <div class="wrap">
@@ -759,7 +797,10 @@ const JOIN = {
 };
 const I18N = {
  ko:{
-  recruit:"학부연구생 · 캡스톤 연구생 모집 중 →",
+  recruit:"학부연구생 · 캡스톤 연구생 모집 중 →", navStudents:"학생",
+  ugWorkH:"이 실험실에서 하는 일", ugWorkP:"지금 진행 중인 연구과제에 직접 참여합니다. 선배들이 어떤 연구로 논문을 냈는지도 함께 소개합니다.",
+  ugCareerH:"졸업생은 어디로 갔을까", ugCareerP:"반도체·배터리·화학·제약 기업과 국책연구소로 진출했습니다. 학부연구생으로 시작해 석사를 마치고 기업·연구소에 들어간 선배들도 있습니다.",
+  projLabel:"진행 과제", learnLabel:"배우는 것", seniorLabel:"선배 연구",
   hUg:"레이저, 플라즈마, AI.<br><em class=\"s\">진짜 장비</em>로 연구합니다.",
   pUg:"교과서 그림으로만 보던 장비를 직접 다룹니다. 레이저로 분자를 잡아내고, 플라즈마로 나노입자를 만들고, AI로 데이터를 분석합니다. <strong>반도체·디스플레이·에너지 기업과 대학원이 찾는 실전 역량</strong>을 학부 때 먼저 쌓으세요. 정규 수업이나 캡스톤디자인과 병행할 수 있습니다.",
   ugCta:"학부연구생 · 캡스톤 연구생 지원하기 →", ugAlumniH:"선배들은 지금", ugFaqH:"자주 묻는 질문",
@@ -790,7 +831,10 @@ const I18N = {
   foot:"© 2026 충남대학교 화학과 나노광화학 연구실", updated:"업데이트 2026.10", alumniN:n=>`${n}명`
  },
  en:{
-  recruit:"Now recruiting undergraduate & capstone researchers →",
+  recruit:"Now recruiting undergraduate & capstone researchers →", navStudents:"Students",
+  ugWorkH:"What you'll work on", ugWorkP:"You join one of our ongoing research projects. Here is what senior members have published in each area.",
+  ugCareerH:"Where our alumni went", ugCareerP:"Alumni have joined semiconductor, battery, chemical and pharmaceutical companies and national labs. Several started as undergraduate researchers and finished an M.S. here before moving on.",
+  projLabel:"Ongoing project", learnLabel:"You'll learn", seniorLabel:"Senior's work",
   hUg:"Lasers, plasma, AI.<br>Research on <em class=\"s\">real equipment.</em>",
   pUg:"Run the instruments you have only seen in textbooks. Catch molecules with lasers, grow nanoparticles with plasma and analyze data with AI. <strong>Build the hands-on skills that semiconductor, display and energy companies and graduate schools look for</strong> while you are still an undergraduate. You can do this alongside regular classes or your capstone design course.",
   ugCta:"Apply as an undergraduate or capstone researcher →", ugAlumniH:"Where our undergraduates went", ugFaqH:"FAQ",
@@ -1011,16 +1055,24 @@ function renderPubs(){
 }
 
 const UG = {
- do:{ko:[["LASER","레이저로 분자를 잡아냅니다","라만 분광기와 펄스 레이저를 직접 운용해 눈에 보이지 않는 극미량 물질을 검출합니다."],
-         ["PLASMA","플라즈마로 나노입자를 만듭니다","대기압 플라즈마 장비로 금 나노입자를 키우고 전자현미경으로 구조를 확인합니다."],
-         ["AI","AI로 데이터를 분석합니다","Python과 머신러닝으로 스펙트럼을 분류합니다. 코딩 실력이 곧 연구 성과가 됩니다."],
-         ["SIM","빛을 시뮬레이션합니다","FDTD로 나노구조 주변의 전기장을 계산해 새 구조를 설계합니다. 반도체·광소자 설계에 쓰이는 기술입니다."]],
-     en:[["LASER","Catch molecules with lasers","Operate Raman spectrometers and pulsed lasers to detect trace amounts of substances you cannot see."],
-         ["PLASMA","Make nanoparticles with plasma","Grow gold nanoparticles with atmospheric-pressure plasma and check their structure under an electron microscope."],
-         ["AI","Analyze data with AI","Classify spectra with Python and machine learning. Your coding skills turn directly into research results."],
-         ["SIM","Simulate light","Compute electric fields around nanostructures with FDTD to design new ones, a technique used in semiconductor and photonic device design."]]},
- logos:{ko:["SK하이닉스","LG에너지솔루션","LG화학","한국화학연구원","국방과학연구소","광동제약"],
-        en:["SK hynix","LG Energy Solution","LG Chem","KRICT","Agency for Defense Development","Kwang Dong Pharmaceutical"]},
+ work:{
+  ko:[{tag:"SERS 센서", title:"물속 오염물질을 현장에서 잡아내는 센서", proj:"전기화학적 제어 기반 스마트 SERS 센서로 해수·담수 현장 모니터링", learn:["라만 분광 측정","금 나노입자 합성","전기화학 측정"], who:"Trinh Ba Thong 박사 — 종이 SERS 기판으로 멜라민·티올 검출 (Applied Surface Science Advances 2025, Chemosensors 2025 제1저자)"},
+      {tag:"메타표면", title:"빛을 원하는 대로 다루는 나노구조 설계", proj:"META-SERS 기초 광학 연구", learn:["FDTD 광학 시뮬레이션","나노구조 설계","광학 측정"], who:"Sy Khiem Nguyen — PDMS 위 실리콘 메타표면의 quasi-BIC 공명 (Photonics 2026 제1저자)"},
+      {tag:"태양열 증발", title:"햇빛으로 깨끗한 물을 만드는 소재", proj:"계면형 태양열 수증기 발생을 위한 플라즈모닉 나노복합체", learn:["광열 나노소재 합성","증발 성능 측정","광흡수 분석"], who:""},
+      {tag:"AI 분석", title:"AI로 스펙트럼 속 정보를 읽어내기", proj:"", learn:["Python","머신러닝 (PCA·딥러닝)","데이터 시각화"], who:"Netrapal Singh 박사 — SERS와 머신러닝·AI 통합 리뷰 (Advanced Sensor Research 2026 제1저자)"}],
+  en:[{tag:"SERS sensors", title:"Sensors that catch pollutants in water on site", proj:"On-site seawater and freshwater monitoring with an electrochemically controlled smart SERS platform", learn:["Raman spectroscopy","Gold nanoparticle synthesis","Electrochemistry"], who:"Dr. Trinh Ba Thong — paper SERS substrates for melamine and thiol detection (first author, Applied Surface Science Advances 2025; Chemosensors 2025)"},
+      {tag:"Metasurfaces", title:"Designing nanostructures that steer light", proj:"Fundamental optics of META-SERS", learn:["FDTD optical simulation","Nanostructure design","Optical measurement"], who:"Sy Khiem Nguyen — quasi-BIC resonances in PDMS-supported silicon metasurfaces (first author, Photonics 2026)"},
+      {tag:"Solar steam", title:"Materials that turn sunlight into clean water", proj:"Plasmonic nanocomposites for interfacial solar steam generation", learn:["Photothermal nanomaterial synthesis","Evaporation testing","Optical absorption analysis"], who:""},
+      {tag:"AI analysis", title:"Reading spectra with AI", proj:"", learn:["Python","Machine learning (PCA, deep learning)","Data visualization"], who:"Dr. Netrapal Singh — review on integrating ML and AI into SERS (first author, Advanced Sensor Research 2026)"}]},
+ careers:[
+  {org:{ko:"SK하이닉스",en:"SK hynix"}, field:{ko:"반도체",en:"Semiconductors"}, people:[["정영순","학부·석사","B.S./M.S."]]},
+  {org:{ko:"LG에너지솔루션",en:"LG Energy Solution"}, field:{ko:"배터리",en:"Batteries"}, people:[["박하철","학부","B.S."]]},
+  {org:{ko:"LG화학",en:"LG Chem"}, field:{ko:"화학",en:"Chemicals"}, people:[["정영훈","학부","B.S."]]},
+  {org:{ko:"광동제약",en:"Kwang Dong Pharmaceutical"}, field:{ko:"제약",en:"Pharmaceuticals"}, people:[["이상원","학부","B.S."]]},
+  {org:{ko:"한국화학연구원",en:"KRICT"}, field:{ko:"국책연구소",en:"National lab"}, people:[["이수민","학부·석사","B.S./M.S."]]},
+  {org:{ko:"국방과학연구소",en:"Agency for Defense Development"}, field:{ko:"국책연구소",en:"National lab"}, people:[["고청아","석사","M.S."]]},
+  {org:{ko:"기타 기업",en:"Other industry"}, field:{ko:"기업",en:"Industry"}, people:[["홍찬우","석사","M.S."],["이규찬","학부","B.S."]]}
+ ],
  faq:{ko:[["캡스톤디자인으로 참여할 수 있나요?","네. 캡스톤디자인 과목과 연계해 한 학기 동안 연구실 프로젝트를 맡을 수 있습니다."],
           ["수업과 병행할 수 있나요?","네. 학부연구생은 정규 수업과 병행하며, 수업 일정에 맞춰 실험 시간을 정합니다."],
           ["실험 경험이 없어도 되나요?","괜찮습니다. 실험실 안전교육과 장비 사용법부터 박사후연구원·대학원생 선배와 함께 배웁니다."],
@@ -1037,8 +1089,18 @@ const UG = {
           ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, Building 4, College of Natural Sciences. You can also visit the student office (Room 316) or the professor’s office (Room 302)."]]}
 };
 function renderUG(){
-  $("#ugDo").innerHTML = UG.do[L].map(d => `<div><span class="tg">${d[0]}</span><b>${d[1]}</b><p>${d[2]}</p></div>`).join("");
-  $("#ugLogos").innerHTML = UG.logos[L].map(x => `<span>${x}</span>`).join("");
+  $("#ugWork").innerHTML = UG.work[L].map(w => `<article class="wk">
+      <span class="tg">${w.tag}</span>
+      <h4>${w.title}</h4>
+      ${w.proj ? `<p class="wk-proj"><span>${t("projLabel")}</span>${w.proj}</p>` : ""}
+      <div class="wk-learn"><span class="wk-l">${t("learnLabel")}</span>${w.learn.map(x=>`<i>${x}</i>`).join("")}</div>
+      ${w.who ? `<p class="wk-who"><span>${t("seniorLabel")}</span>${esc(w.who)}</p>` : ""}
+    </article>`).join("");
+  $("#ugCareers").innerHTML = UG.careers.map(c => `<div class="cr">
+      <span class="cr-f">${c.field[L]}</span>
+      <b>${c.org[L]}</b>
+      <span class="cr-p">${c.people.map(p => `${p[0]} <em>${L==="ko"?p[1]:p[2]}</em>`).join("<br>")}</span>
+    </div>`).join("");
   $("#ugFaq").innerHTML = UG.faq[L].map(f => `<div class="qa"><b>${f[0]}</b><p>${f[1]}</p></div>`).join("");
 }
 const FEATURED = [
