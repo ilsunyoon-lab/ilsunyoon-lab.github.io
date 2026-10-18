@@ -327,7 +327,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 .ug-bh{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:18px}
 .ug-bh h3{font-family:var(--kr);font-size:clamp(24px,2.6vw,32px);font-weight:700;letter-spacing:-.03em}
 .ug-bh p{margin:0;max-width:40em;font-family:var(--kr);font-size:15px;color:var(--ink-2)}
-.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-bottom:16px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}
+.step{padding:22px 24px;display:grid;gap:6px;position:relative;min-width:0}
+.step + .step{border-left:1px solid var(--line)}
+.step .mono{font-size:12px;color:var(--gold);letter-spacing:.08em}
+.step b{font-family:var(--kr);font-size:22px;font-weight:700;letter-spacing:-.03em}
+.step p{margin:0;font-family:var(--kr);font-size:14px;line-height:1.6;color:var(--ink-2)}
+.step + .step::before{content:"→";position:absolute;left:-12px;top:22px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:var(--surface);border:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+.work{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.work .wk{grid-column:span 2}
+.work .wk:nth-child(n+4){grid-column:span 3}
+@media (max-width:980px){.work .wk,.work .wk:nth-child(n+4){grid-column:span 3}}
+@media (max-width:760px){.steps{grid-template-columns:minmax(0,1fr)}.step + .step{border-left:0;border-top:1px solid var(--line)}.step + .step::before{display:none}.work .wk,.work .wk:nth-child(n+4){grid-column:1 / -1}}
 .wk{border-radius:20px;padding:24px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0}
 .wk .tg{align-self:flex-start;font-family:var(--kr);font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;background:var(--glow);color:var(--gold)}
 .wk h4{margin:0;font-family:var(--kr);font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.4}
@@ -345,7 +356,7 @@ html[lang="ko"] .wk p span,html[lang="ko"] .wk .wk-l{font-family:var(--kr);lette
 .cr b{font-family:var(--kr);font-size:18px;font-weight:700;letter-spacing:-.02em}
 .cr-p{font-family:var(--kr);font-size:13.5px;color:var(--ink-2);line-height:1.6}
 .cr-p em{font-style:normal;color:var(--ink-3);font-size:12.5px}
-@media (max-width:760px){.work{grid-template-columns:minmax(0,1fr)}}
+
 
 /* light ↔ matter triad */
 .triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:40px}
@@ -471,6 +482,7 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
 
     <div class="ug-block">
       <div class="ug-bh"><h3 data-i18n="ugWorkH"></h3><p data-i18n="ugWorkP"></p></div>
+      <div class="steps" id="ugSteps"></div>
       <div class="work" id="ugWork"></div>
     </div>
 
@@ -798,9 +810,9 @@ const JOIN = {
 const I18N = {
  ko:{
   recruit:"학부연구생 · 캡스톤 연구생 모집 중 →", navStudents:"학생",
-  ugWorkH:"이 실험실에서 하는 일", ugWorkP:"지금 진행 중인 연구과제에 직접 참여합니다. 선배들이 어떤 연구로 논문을 냈는지도 함께 소개합니다.",
+  ugWorkH:"이 실험실에서 하는 일", ugWorkP:"구조와 물질을 직접 만들고, 설계하고, 측정해서 성능을 결정합니다. 분야마다 실제 과제와 선배들의 논문으로 보여드립니다.",
   ugCareerH:"졸업생은 어디로 갔을까", ugCareerP:"반도체·배터리·화학·제약 기업과 국책연구소로 진출했습니다. 학부연구생으로 시작해 석사를 마치고 기업·연구소에 들어간 선배들도 있습니다.",
-  projLabel:"진행 과제", learnLabel:"배우는 것", seniorLabel:"선배 연구",
+  projLabel:"진행 과제", projDoneLabel:"관련 과제", learnLabel:"배우는 것", seniorLabel:"선배 연구",
   hUg:"레이저, 플라즈마, AI.<br><em class=\"s\">진짜 장비</em>로 연구합니다.",
   pUg:"교과서 그림으로만 보던 장비를 직접 다룹니다. 레이저로 분자를 잡아내고, 플라즈마로 나노입자를 만들고, AI로 데이터를 분석합니다. <strong>반도체·디스플레이·에너지 기업과 대학원이 찾는 실전 역량</strong>을 학부 때 먼저 쌓으세요. 정규 수업이나 캡스톤디자인과 병행할 수 있습니다.",
   ugCta:"학부연구생 · 캡스톤 연구생 지원하기 →", ugAlumniH:"선배들은 지금", ugFaqH:"자주 묻는 질문",
@@ -832,9 +844,9 @@ const I18N = {
  },
  en:{
   recruit:"Now recruiting undergraduate & capstone researchers →", navStudents:"Students",
-  ugWorkH:"What you'll work on", ugWorkP:"You join one of our ongoing research projects. Here is what senior members have published in each area.",
+  ugWorkH:"What you'll work on", ugWorkP:"We make structures and materials, design them, and measure them to determine performance. Each area below shows a real project and what senior members have published.",
   ugCareerH:"Where our alumni went", ugCareerP:"Alumni have joined semiconductor, battery, chemical and pharmaceutical companies and national labs. Several started as undergraduate researchers and finished an M.S. here before moving on.",
-  projLabel:"Ongoing project", learnLabel:"You'll learn", seniorLabel:"Senior's work",
+  projLabel:"Ongoing project", projDoneLabel:"Related project", learnLabel:"You'll learn", seniorLabel:"Senior's work",
   hUg:"Lasers, plasma, AI.<br>Research on <em class=\"s\">real equipment.</em>",
   pUg:"Run the instruments you have only seen in textbooks. Catch molecules with lasers, grow nanoparticles with plasma and analyze data with AI. <strong>Build the hands-on skills that semiconductor, display and energy companies and graduate schools look for</strong> while you are still an undergraduate. You can do this alongside regular classes or your capstone design course.",
   ugCta:"Apply as an undergraduate or capstone researcher →", ugAlumniH:"Where our undergraduates went", ugFaqH:"FAQ",
@@ -1058,12 +1070,21 @@ const UG = {
  work:{
   ko:[{tag:"SERS 센서", title:"물속 오염물질을 현장에서 잡아내는 센서", proj:"전기화학적 제어 기반 스마트 SERS 센서로 해수·담수 현장 모니터링", learn:["라만 분광 측정","금 나노입자 합성","전기화학 측정"], who:"Trinh Ba Thong 박사 — 종이 SERS 기판으로 멜라민·티올 검출 (Applied Surface Science Advances 2025, Chemosensors 2025 제1저자)"},
       {tag:"메타표면", title:"빛을 원하는 대로 다루는 나노구조 설계", proj:"META-SERS 기초 광학 연구", learn:["FDTD 광학 시뮬레이션","나노구조 설계","광학 측정"], who:"Sy Khiem Nguyen — PDMS 위 실리콘 메타표면의 quasi-BIC 공명 (Photonics 2026 제1저자)"},
+      {tag:"Si 무반사 구조", title:"빛을 가두는 실리콘 표면과 무반사 필름", proj:"태양전지-이차전지 모노리틱 전원을 위한 탈부착식 무반사 표면집광필름 (5연차 완료)", done:1, learn:["Si 습식·금속보조 식각","무반사 나노구조 설계","반사율·흡수 측정"], who:""},
       {tag:"태양열 증발", title:"햇빛으로 깨끗한 물을 만드는 소재", proj:"계면형 태양열 수증기 발생을 위한 플라즈모닉 나노복합체", learn:["광열 나노소재 합성","증발 성능 측정","광흡수 분석"], who:""},
       {tag:"AI 분석", title:"AI로 스펙트럼 속 정보를 읽어내기", proj:"", learn:["Python","머신러닝 (PCA·딥러닝)","데이터 시각화"], who:"Netrapal Singh 박사 — SERS와 머신러닝·AI 통합 리뷰 (Advanced Sensor Research 2026 제1저자)"}],
   en:[{tag:"SERS sensors", title:"Sensors that catch pollutants in water on site", proj:"On-site seawater and freshwater monitoring with an electrochemically controlled smart SERS platform", learn:["Raman spectroscopy","Gold nanoparticle synthesis","Electrochemistry"], who:"Dr. Trinh Ba Thong — paper SERS substrates for melamine and thiol detection (first author, Applied Surface Science Advances 2025; Chemosensors 2025)"},
       {tag:"Metasurfaces", title:"Designing nanostructures that steer light", proj:"Fundamental optics of META-SERS", learn:["FDTD optical simulation","Nanostructure design","Optical measurement"], who:"Sy Khiem Nguyen — quasi-BIC resonances in PDMS-supported silicon metasurfaces (first author, Photonics 2026)"},
+      {tag:"Si anti-reflection", title:"Silicon surfaces that trap light, and anti-reflective films", proj:"Detachable anti-reflective light-concentrating films for monolithic solar cell–battery power (5-year project, completed)", done:1, learn:["Si wet & metal-assisted etching","Anti-reflective nanostructure design","Reflectance & absorption measurement"], who:""},
       {tag:"Solar steam", title:"Materials that turn sunlight into clean water", proj:"Plasmonic nanocomposites for interfacial solar steam generation", learn:["Photothermal nanomaterial synthesis","Evaporation testing","Optical absorption analysis"], who:""},
       {tag:"AI analysis", title:"Reading spectra with AI", proj:"", learn:["Python","Machine learning (PCA, deep learning)","Data visualization"], who:"Dr. Netrapal Singh — review on integrating ML and AI into SERS (first author, Advanced Sensor Research 2026)"}]},
+ steps:{
+  ko:[["01","만든다","나노입자 합성, 플라즈마 공정, 실리콘 식각과 나노구조 제작, 기능성 필름까지 구조와 물질을 직접 만듭니다."],
+      ["02","설계한다","FDTD 광학 시뮬레이션으로 메타표면과 무반사 구조를 설계하고, AI로 데이터를 분석합니다."],
+      ["03","측정한다","라만·반사율·흡수 분광과 전자현미경, 소자 평가로 측정해 성능을 결정합니다."]],
+  en:[["01","Make","Synthesize nanoparticles, run plasma processes, etch silicon nanostructures and fabricate functional films."],
+      ["02","Design","Design metasurfaces and anti-reflective structures with FDTD optical simulation, and analyze data with AI."],
+      ["03","Measure","Determine performance through Raman, reflectance and absorption spectroscopy, electron microscopy and device testing."]]},
  careers:[
   {org:{ko:"SK하이닉스",en:"SK hynix"}, field:{ko:"반도체",en:"Semiconductors"}, people:[["정영순","학부·석사","B.S./M.S."]]},
   {org:{ko:"LG에너지솔루션",en:"LG Energy Solution"}, field:{ko:"배터리",en:"Batteries"}, people:[["박하철","학부","B.S."]]},
@@ -1089,10 +1110,11 @@ const UG = {
           ["How do I apply?","Email a short introduction, or stop by the lab in Room 315, Building 4, College of Natural Sciences. You can also visit the student office (Room 316) or the professor’s office (Room 302)."]]}
 };
 function renderUG(){
+  $("#ugSteps").innerHTML = UG.steps[L].map(x => `<div class="step"><span class="mono">${x[0]}</span><b>${x[1]}</b><p>${x[2]}</p></div>`).join("");
   $("#ugWork").innerHTML = UG.work[L].map(w => `<article class="wk">
       <span class="tg">${w.tag}</span>
       <h4>${w.title}</h4>
-      ${w.proj ? `<p class="wk-proj"><span>${t("projLabel")}</span>${w.proj}</p>` : ""}
+      ${w.proj ? `<p class="wk-proj"><span>${w.done ? t("projDoneLabel") : t("projLabel")}</span>${w.proj}</p>` : ""}
       <div class="wk-learn"><span class="wk-l">${t("learnLabel")}</span>${w.learn.map(x=>`<i>${x}</i>`).join("")}</div>
       ${w.who ? `<p class="wk-who"><span>${t("seniorLabel")}</span>${esc(w.who)}</p>` : ""}
     </article>`).join("");
