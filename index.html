@@ -145,7 +145,7 @@ section.s{padding-block:clamp(80px,11vw,140px) 0}
 .cv{border-radius:24px;padding:32px;background:var(--surface);border:1px solid var(--line);display:grid;gap:26px}
 .cv h4{margin:0 0 6px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .cv ul{list-style:none;margin:0;padding:0}
-.cv li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--kr);font-size:15px}
+.cv li{display:grid;grid-template-columns:148px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--kr);font-size:15px}
 .cv li:last-child{border-bottom:0}
 .cv li .mono{color:var(--ink-3);font-size:13px;padding-top:2px}
 .team{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:16px}
@@ -269,6 +269,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 [hidden]{display:none!important}
 .join-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
 .join-tags span{font-family:var(--kr);font-size:14px;font-weight:500;padding:8px 15px;border-radius:999px;background:rgba(242,181,68,.14);border:1px solid rgba(242,181,68,.4);color:#FFD68A}
+.pi-extra{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.talks li span b{display:block;font-weight:500}
+.talks li span i{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--ink-3);line-height:1.5;margin-top:3px}
+.teach{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.teach span{font-family:var(--kr);font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink-2)}
+.soc{margin:6px 0 0;font-family:var(--kr);font-size:14.5px}
+@media (max-width:760px){.pi-extra{grid-template-columns:minmax(0,1fr)}}
 /* projects */
 .proj-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .proj-list{border:1px solid var(--line);border-radius:20px;background:var(--surface);overflow:hidden}
@@ -455,8 +462,13 @@ html[lang="ko"] .hero-stats span,html[lang="ko"] .hero .kicker,html[lang="ko"] .
       </div>
       <div class="cv">
         <div><h4 data-i18n="cvCareer"></h4><ul id="career"></ul></div>
+        <div><h4 data-i18n="cvService"></h4><ul id="service"></ul></div>
         <div><h4 data-i18n="cvEdu"></h4><ul id="edu"></ul></div>
       </div>
+    </div>
+    <div class="pi-extra">
+      <div class="cv"><div><h4 data-i18n="cvTalks"></h4><ul id="talks" class="talks"></ul></div></div>
+      <div class="cv"><div><h4 data-i18n="cvTeach"></h4><div class="teach" id="teach"></div></div><div><h4 data-i18n="cvSoc"></h4><p class="soc" data-i18n="soc"></p></div></div>
     </div>
     <div class="team" id="team"></div>
     <details class="alumni">
@@ -691,7 +703,9 @@ const NEWS = [
 ];
 const CV = {
  career:[
-  ["2014 – 현재","2014 – now","충남대학교 화학과 교수 (2014 조교수 임용, 현 정교수)","Professor, Dept. of Chemistry, CNU (Assistant Prof. from 2014; now Full Professor)"],
+  ["2026.09 – 현재","Sep 2026 – now","충남대학교 화학과 교수","Professor, Dept. of Chemistry, CNU"],
+  ["2021.09 – 2026.08","Sep 2021 – Aug 2026","충남대학교 화학과 부교수","Associate Professor, Dept. of Chemistry, CNU"],
+  ["2014.09 – 2021.08","Sep 2014 – Aug 2021","충남대학교 화학과 조교수","Assistant Professor, Dept. of Chemistry, CNU"],
   ["2013 – 2014","2013 – 2014","삼성종합기술원(SAIT) 전문연구원","Research Staff Member, Samsung Advanced Institute of Technology"],
   ["2010 – 2013","2010 – 2013","UC San Diego 나노공학과 박사후연구원","Postdoc, UC San Diego, Nanoengineering"],
   ["2008 – 2009","2008 – 2009","KAIST 박사후연구원","Postdoc, KAIST"]],
@@ -699,6 +713,21 @@ const CV = {
   ["2008","2008","KAIST 물리화학 박사","Ph.D., Physical Chemistry, KAIST"],
   ["2002","2002","KAIST 물리화학 석사","M.S., Physical Chemistry, KAIST"],
   ["2000","2000","KAIST 화학 학사","B.S., Chemistry, KAIST"]],
+ service:[
+  ["2026.02 – 현재","Feb 2026 – now","충남대학교 화학과 학과장","Chair, Department of Chemistry, CNU"],
+  ["2025.06 – 2026.02","Jun 2025 – Feb 2026","충남대학교 RISE 사업단 RISE 추진본부 연구혁신부장","Head of Research Innovation, RISE Promotion Headquarters, CNU RISE Project Group"],
+  ["현재","now","뉴그린에너지환경화학연구소(PRIDE) 소장","Director, PRIDE Research Institute (New Green Energy & Environmental Chemistry)"],
+  ["현재","now","충남대학교 반도체공동연구소 위원","Committee member, CNU Semiconductor Joint Research Center"]],
+ talks:[
+  ["2026.06","Jun 2026","대한화학회 물리화학분과회의 발표","Korean Chemical Society, Physical Chemistry Division","Dry Plasma Reduction: A Green, Single-Step Route to Plasmonic Nanogap Substrates on Cellulose Paper"],
+  ["2026.03","Mar 2026","한국태양광발전학회 춘계학술대회 발표","Korea Photovoltaic Society Spring Conference","Optical Enhancement of Light Absorption in Non-Textured Flexible Thin Crystalline Silicon Solar Cells"],
+  ["2026.01","Jan 2026","CES 2026 대전통합관 연계 학생 글로벌 역량강화 프로그램 (미국)","CES 2026 Daejeon Pavilion, student global competency program (USA)",""],
+  ["2024.11","Nov 2024","국제학술대회 초청강연 · 뉴사우스웨일스대학(UNSW) 방문 (호주)","Invited talk at an international conference and visit to UNSW (Australia)",""],
+  ["2024.11","Nov 2024","International Conference on Advances in Carbon Science and Innovation 발표","International Conference on Advances in Carbon Science and Innovation","Design and Optimization of a Black Plasmonic-Au Paper Based Solar Water-Evaporation System with Enhanced Stability and Efficiency"],
+  ["2024.11","Nov 2024","SemiExpo Vietnam 방문 · 상호협력 논의 (베트남)","SemiExpo Vietnam visit and collaboration talks (Vietnam)",""],
+  ["2024.07","Jul 2024","제3회 강원방사선융복합연구지원센터 심포지엄 발표","3rd Gangwon Radiation Convergence Research Support Center Symposium","Engineering Light-Matter Interaction of Nanomaterials for Advanced Photonic Sensors and Solar Energy Devices"]],
+ teach:{ko:["수리및계산화학","화학열역학","양자화학및분광학1","물리화학실험","에너지환경화학","고등물리화학","분자분광학","고등광화학","물리화학연구1·2"],
+        en:["Mathematical & Computational Chemistry","Chemical Thermodynamics","Quantum Chemistry & Spectroscopy 1","Physical Chemistry Lab","Energy & Environmental Chemistry","Advanced Physical Chemistry","Molecular Spectroscopy","Advanced Photochemistry","Physical Chemistry Research 1·2"]},
  roles:{ko:["충남대학교 화학과 교수","화학과 학과장","뉴그린에너지환경화학연구소(PRIDE) 소장","반도체공동연구소 위원"],
         en:["Professor of Chemistry, CNU","Chair, Department of Chemistry","Director, PRIDE Research Institute","Member, CNU Semiconductor Joint Research Center"]}
 };
@@ -732,7 +761,7 @@ const I18N = {
   heroNote:"Google Scholar 기준 · 2026.10 · 배경: 레이저가 금 나노입자 사이 핫스팟을 들뜨게 하는 모습 (커서를 움직여 보세요)",
   hResearch:"<em class=\"s\">연구</em> 분야", pResearch:"단일 나노와이어 SERS에서 출발해 센서, 광소자, 에너지 전환으로 영역을 넓혀 왔습니다. 카드의 논문 수를 누르면 해당 분야 논문만 모아 볼 수 있습니다.",
   hPeople:"함께하는 <em class=\"s\">사람들</em>", pPeople:"화학, 물리, 재료를 전공한 국내외 연구자들이 함께합니다.",
-  piLabel:"연구책임자", piName:"윤일선<small>Ilsun Yoon, Ph.D.</small>", cvCareer:"경력", cvEdu:"학력", alumni:"졸업생과 진로",
+  piLabel:"연구책임자", piName:"윤일선<small>Ilsun Yoon, Ph.D.</small>", cvCareer:"경력", cvEdu:"학력", cvService:"보직 · 위원", cvTalks:"주요 발표 · 국제 활동", cvTeach:"담당 과목", cvSoc:"학회", soc:"대한화학회 종신회원 (2014–)", alumni:"졸업생과 진로",
   hPubs:"<em class=\"s\">논문</em>", pPubs:"연구실을 대표하는 논문과 전체 논문 목록입니다. 카드나 제목을 누르면 Google Scholar에서 원문을 찾습니다.",
   conf:"학회 발표 포함", search:"제목·저자·저널 검색", all:"전체", cited:"회 인용", confTag:"학회",
   count:(n,c)=>`${n}편 · 피인용 ${c}회`, empty:"조건에 맞는 논문이 없습니다. 검색어를 줄이거나 ‘전체’를 눌러 보세요.", papers:n=>`논문 ${n}편 →`,
@@ -763,7 +792,7 @@ const I18N = {
   heroNote:"Google Scholar · Oct 2026 · Background: a laser exciting hot spots between gold nanoparticles (move your cursor)",
   hResearch:"What we <em class=\"s\">study</em>", pResearch:"From single-nanowire SERS we have grown into sensing, photonics and energy conversion. Click a card’s paper count to see that area’s publications.",
   hPeople:"The <em class=\"s\">team</em>", pPeople:"Researchers from Korea and abroad with backgrounds in chemistry, physics and materials science.",
-  piLabel:"Principal Investigator", piName:"Ilsun Yoon<small>윤일선 · Ph.D.</small>", cvCareer:"Career", cvEdu:"Education", alumni:"Alumni & where they went",
+  piLabel:"Principal Investigator", piName:"Ilsun Yoon<small>윤일선 · Ph.D.</small>", cvCareer:"Career", cvEdu:"Education", cvService:"Service", cvTalks:"Talks & international activities", cvTeach:"Courses taught", cvSoc:"Societies", soc:"Lifetime member, Korean Chemical Society (since 2014)", alumni:"Alumni & where they went",
   hPubs:"Selected <em class=\"s\">work</em>", pPubs:"Papers that define the lab, followed by the full list. Cards and titles link to Google Scholar.",
   conf:"Include conference papers", search:"Search title, author, journal", all:"All", cited:"citations", confTag:"Conf.",
   count:(n,c)=>`${n} papers · ${c} citations`, empty:"No papers match. Try a shorter search or select ‘All’.", papers:n=>`${n} papers →`,
@@ -901,6 +930,9 @@ function renderPeople(){
   const li = r => `<li><span class="mono">${L==="ko"?r[0]:r[1]}</span><span>${L==="ko"?r[2]:r[3]}</span></li>`;
   $("#career").innerHTML = CV.career.map(li).join("");
   $("#edu").innerHTML = CV.edu.map(li).join("");
+  $("#service").innerHTML = CV.service.map(li).join("");
+  $("#talks").innerHTML = CV.talks.map(r => `<li><span class="mono">${L==="ko"?r[0]:r[1]}</span><span><b>${L==="ko"?r[2]:r[3]}</b>${r[4]?`<i>${esc(r[4])}</i>`:""}</span></li>`).join("");
+  $("#teach").innerHTML = CV.teach[L].map(c => `<span>${c}</span>`).join("");
   const initials = m => m.ini || m.name.split(" ").filter(Boolean).map(w=>w[0]).slice(0,2).join("");
   $("#team").innerHTML = MEMBERS.map(m => `<div class="member${m.tag?" featured":""}"><div class="mtop"><div class="avatar" style="--av:${m.c}">${esc(initials(m))}</div>${m.tag?`<span class="mtag">${esc(m.tag)}</span>`:""}</div><div><b>${esc(m.name)}</b><span>${m[L]}</span></div>${m.note?`<p class="mnote">${esc(m.note[L])}</p>`:""}</div>`).join("");
   $("#alumni").innerHTML = ALUMNI.map(a => { const d = L==="ko"?a[3]:a[4]; return `<li>${a[0]} <span>${L==="ko"?a[1]:a[2]}${d?" → "+d:""}</span></li>`; }).join("");
